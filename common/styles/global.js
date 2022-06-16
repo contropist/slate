@@ -16,22 +16,22 @@ export const injectGlobalStyles = () => css`
 
   @font-face {
     font-family: 'inter-regular';
-    src: url('https://slate.textile.io/ipfs/bafkreic3hkcuwvrmf6trweqcjp62valsfjh3zvwacikoreynakgw67wrvy');
-  }
-
-  @font-face {
-    font-family: 'inter-semi-bold';
-    src: url('https://slate.textile.io/ipfs/bafkreiaezvuz6wawoqyntfl4gbprol3e7majovgof3uxvhilvd2pgk4w54');
-  }
-
-  @font-face {
-    font-family: 'inter-bold';
-    src: url('https://slate.textile.io/ipfs/bafybeigljfbymd52vnrie6qkcy4u4kplsz4yen2idpizhr3dvrgy7kufaq');
+    src: url('../public/static/Inter-Regular.woff');
   }
 
   @font-face {
     font-family: 'inter-medium';
-    src: url('https://slate.textile.io/ipfs/bafkreiapyxmqjwoowqpek2cjocouzxoalwlzwwbv3dscug3e5l2ok7xmqe');
+    src: url('../public/static/Inter-Medium.woff');
+  }
+
+  @font-face {
+    font-family: 'inter-semi-bold';
+    src: url('../public/static/Inter-SemiBold.woff');
+  }
+
+  @font-face {
+    font-family: 'inter-bold';
+    src: url('../public/static/Inter-Bold.woff');
   }
 
   @font-face {

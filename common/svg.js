@@ -456,21 +456,39 @@ export const OldWallet = (props) => (
 
 export const RightArrow = (props) => (
   <svg
-    viewBox="0 0 24 24"
-    height={props.height}
+    width={16}
+    height={16}
+    viewBox="0 0 16 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    stroke="currentColor"
+    strokeWidth="1.25"
+    strokeLinecap="round"
+    strokeLinejoin="round"
     {...props}
     style={{ display: "block", ...props.style }}
   >
-    <g
-      fill="none"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-    >
-      <path d="M5 12H19" />
-      <path d="M12 5L19 12L12 19" />
-    </g>
+    <path d="M3.33331 8H12.6666" />
+    <path d="M8 3.33334L12.6667 8.00001L8 12.6667" />
+  </svg>
+);
+
+export const LeftArrow = (props) => (
+  <svg
+    width={16}
+    height={16}
+    viewBox="0 0 16 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    stroke="currentColor"
+    strokeWidth="1.25"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+    style={{ display: "block", ...props.style }}
+  >
+    <path d="M12.6666 8H3.33331" />
+    <path d="M7.99998 12.6667L3.33331 8.00001L7.99998 3.33334" />
   </svg>
 );
 
@@ -2144,25 +2162,19 @@ export const Mail = (props) => (
   <svg
     width={16}
     height={16}
+    viewBox="0 0 16 16"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    stroke="currentColor"
+    strokeWidth="1.25"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    // tabIndex="0"
     {...props}
     style={{ display: "block", ...props.style }}
   >
-    <path
-      d="M2.667 2.667h10.666c.734 0 1.334.6 1.334 1.333v8c0 .733-.6 1.333-1.334 1.333H2.667c-.734 0-1.334-.6-1.334-1.333V4c0-.733.6-1.333 1.334-1.333z"
-      stroke="currentColor"
-      strokeWidth={1.25}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M14.667 4L8 8.667 1.333 4"
-      stroke="currentColor"
-      strokeWidth={1.25}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
+    <path d="M2.667 2.667h10.666c.734 0 1.334.6 1.334 1.333v8c0 .733-.6 1.333-1.334 1.333H2.667c-.734 0-1.334-.6-1.334-1.333V4c0-.733.6-1.333 1.334-1.333z" />
+    <path d="M14.667 4L8 8.667 1.333 4" />
   </svg>
 );
 
@@ -2346,18 +2358,37 @@ export const Twitter = (props) => (
   <svg
     width={16}
     height={16}
+    viewBox="0 0 16 16"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    stroke="currentColor"
+    strokeWidth="1.25"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    // tabIndex="0"
     {...props}
     style={{ display: "block", ...props.style }}
   >
-    <path
-      d="M15.333 2a7.268 7.268 0 01-2.093 1.02 2.987 2.987 0 00-5.24 2v.667a7.107 7.107 0 01-6-3.02s-2.667 6 3.333 8.666a7.76 7.76 0 01-4.666 1.334C6.667 16 14 12.667 14 5c0-.186-.018-.371-.053-.553A5.147 5.147 0 0015.333 2v0z"
-      stroke="currentColor"
-      strokeWidth={1.25}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
+    <path d="M15.333 2a7.268 7.268 0 01-2.093 1.02 2.987 2.987 0 00-5.24 2v.667a7.107 7.107 0 01-6-3.02s-2.667 6 3.333 8.666a7.76 7.76 0 01-4.666 1.334C6.667 16 14 12.667 14 5c0-.186-.018-.371-.053-.553A5.147 5.147 0 0015.333 2v0z" />
+  </svg>
+);
+
+export const Discord = (props) => (
+  <svg
+    width={16}
+    height={16}
+    viewBox="0 0 16 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    stroke="currentColor"
+    strokeWidth="1.25"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    // tabIndex="0"
+    {...props}
+    style={{ display: "block", ...props.style }}
+  >
+    <path d="M13.3887 3.12791C15.1297 5.7015 15.9928 8.59281 15.6906 11.9178C14.4201 12.8369 13.1883 13.4115 11.9724 13.8002C11.7518 13.4853 11.5474 13.1577 11.3618 12.8179C11.734 12.6667 12.0915 12.4913 12.4376 12.2894C12.6278 12.1786 12.6348 11.9138 12.4652 11.7878L12.4651 11.7878C12.3843 11.7278 12.3037 11.6645 12.2264 11.601L12.2265 11.6009L12.2233 11.5984C12.1372 11.5299 12.0161 11.5111 11.9095 11.5612C9.38898 12.7228 6.63066 12.7231 4.078 11.5602L4.07621 11.5594C3.97443 11.514 3.853 11.5281 3.76381 11.6016C3.68724 11.6646 3.60645 11.7275 3.52507 11.7883C3.35144 11.9179 3.369 12.1817 3.55395 12.2894L3.55566 12.2904C3.90054 12.4878 4.25806 12.6658 4.63123 12.8188C4.4486 13.1586 4.24414 13.4859 4.02019 13.8006C2.80951 13.4118 1.57769 12.8372 0.307019 11.9181C0.0539242 9.03634 0.612187 6.1225 2.60647 3.12827C3.55137 2.70026 4.55945 2.3801 5.61107 2.18744C5.72991 2.40661 5.85402 2.65872 5.94148 2.86842L6.01671 3.0488L6.20991 3.01933C7.38924 2.83947 8.58756 2.83935 9.79313 3.01945L9.98426 3.048L10.06 2.87022C10.1489 2.66171 10.2695 2.40603 10.3857 2.18764C11.4373 2.38081 12.4448 2.70078 13.3887 3.12791ZM10.243 2.16227L10.2455 2.16269L10.243 2.16227ZM0.315195 12.0082L0.315033 12.0064L0.315195 12.0082ZM12.1858 11.8575C12.1853 11.8578 12.1848 11.8581 12.1843 11.8583C12.1848 11.858 12.1853 11.8577 12.1859 11.8574L12.1858 11.8575ZM12.0563 13.9184L12.0555 13.9172L12.0563 13.9184ZM3.65876 8.60685C3.65876 9.60516 4.39501 10.466 5.34668 10.466C6.31169 10.466 7.03372 9.60469 7.03458 8.60864C7.04795 7.61406 6.31631 6.74773 5.34668 6.74773C4.38108 6.74773 3.65876 7.61003 3.65876 8.60685ZM8.97526 8.60685C8.97526 9.60516 9.71151 10.466 10.6632 10.466C11.6352 10.466 12.3502 9.60394 12.3511 8.60864C12.3644 7.61407 11.6328 6.74773 10.6632 6.74773C9.69755 6.74773 8.97526 7.61004 8.97526 8.60685Z" />
   </svg>
 );
 

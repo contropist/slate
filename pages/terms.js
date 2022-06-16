@@ -118,7 +118,7 @@ export default class TermsPage extends React.Component {
   render() {
     const title = `Slate: Terms of Service`;
     const description = "You must agree to our terms of service to use Slate.";
-    const url = "https://slate.host/terms-new";
+    const url = "https://slate.host/terms";
 
     return (
       <WebsitePrototypeWrapper title={title} description={description} url={url}>

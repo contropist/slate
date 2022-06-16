@@ -10,9 +10,8 @@ const STYLES_ROOT = css`
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: ${Constants.semantic.bgBlurWhiteOP};
-  backdrop-filter: blur(75px);
   z-index: ${Constants.zindex.header};
+  background-color: ${Constants.semantic.bgLight};
 `;
 
 const STYLES_CONTAINER = css`
@@ -23,7 +22,7 @@ const STYLES_CONTAINER = css`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   font: ${Constants.font.medium};
   color: ${Constants.semantic.textBlack};
   font-size: 14px;
@@ -31,29 +30,19 @@ const STYLES_CONTAINER = css`
   line-height: 20px;
   letter-spacing: -0.01px;
   text-align: left;
-  padding: 14px 24px;
+  padding: 16px;
 
   @media (max-width: ${Constants.sizes.mobile}px) {
     max-width: 480px;
-    padding: 14px 16px;
+    padding: 16px;
     display: flex;
-    justify-content: space-between;
   }
 `;
 
-const STYLES_LINK = css`
-  color: ${Constants.semantic.textBlack};
-  text-decoration: none;
-`;
-
-const STYLES_LEFT = css`
+const STYLES_LOGO = css`
   flex-shrink: 0;
-`;
-
-const STYLES_RIGHT = css`
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
+  height: 24px;
+  width: 24px;
 `;
 
 const STYLES_BUTTON = css`
@@ -83,35 +72,24 @@ const STYLES_BUTTON_PRIMARY_SMALL = css`
   border-radius: 8px;
 `;
 
-const STYLES_BUTTON_SECONDARY = css`
-  ${STYLES_BUTTON};
-  color: ${Constants.semantic.textBlack};
-  background-color: ${Constants.semantic.bgGrayLight};
-`;
-
-const STYLES_BUTTON_SECONDARY_SMALL = css`
-  ${STYLES_BUTTON_SECONDARY};
-  padding: 1px 12px 3px;
-  border-radius: 8px;
+const STYLES_IMG = css`
+  height: 20px;
 `;
 
 const WebsiteHeader = (props) => {
-  const signInURL = "/_/auth";
+  const slate = "../public/static/Slate_volumetric.png";
 
   return (
     <div css={STYLES_ROOT}>
       <div css={STYLES_CONTAINER} style={props.style}>
-        <div css={STYLES_LEFT}>
-          <a css={STYLES_LINK} href="/" style={{ marginRight: 24 }}>
-            Slate
+        <div css={STYLES_LOGO}>
+          <a href="../">
+            <img css={STYLES_IMG} src={slate} alt="Slate volumetric logo" />
           </a>
         </div>
-        <div css={STYLES_RIGHT}>
-          <a css={STYLES_BUTTON_SECONDARY_SMALL} style={{ marginRight: 8 }} href="../_/auth">
-            Sign in
-          </a>
+        <div>
           <a css={STYLES_BUTTON_PRIMARY_SMALL} href="../_/auth">
-            Sign up
+            Install Slate for Chrome
           </a>
         </div>
       </div>
