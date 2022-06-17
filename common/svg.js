@@ -2661,3 +2661,36 @@ export const Airplay = (props) => (
     />
   </svg>
 );
+
+export const TwitterFavicon = (props) => (
+  <svg width={16} height={14} fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <g clipPath="url(#prefix__clip0_2_19929)">
+      <path
+        d="M16 1.59a6.563 6.563 0 01-1.885.517A3.292 3.292 0 0015.558.291a6.575 6.575 0 01-2.085.797A3.283 3.283 0 007.88 4.082 9.32 9.32 0 011.115.652 3.281 3.281 0 002.13 5.034a3.27 3.27 0 01-1.487-.41v.041a3.285 3.285 0 002.633 3.22 3.287 3.287 0 01-1.483.055 3.286 3.286 0 003.067 2.28A6.586 6.586 0 010 11.58a9.292 9.292 0 005.032 1.474c6.038 0 9.34-5.002 9.34-9.34 0-.142-.004-.283-.01-.424A6.672 6.672 0 0016 1.59z"
+        fill="#55ACEE"
+      />
+    </g>
+    <defs>
+      <clipPath id="prefix__clip0_2_19929">
+        <path fill="#fff" d="M0 0h16v13.063H0z" />
+      </clipPath>
+    </defs>
+  </svg>
+);
+
+export const YoutubeFavicon = (props) => (
+  <svg width={16} height={12} fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <g clipPath="url(#prefix__clip0_2_20642)">
+      <path
+        d="M15.647 1.755A2.011 2.011 0 0014.23.339C12.989 0 7.99 0 7.99 0S2.996.01 1.754.349c-.69.187-1.23.726-1.416 1.416C-.04 3.97-.184 7.333.347 9.45c.187.69.726 1.229 1.416 1.416 1.242.338 6.239.338 6.239.338s4.997 0 6.239-.338a2.011 2.011 0 001.416-1.416c.396-2.21.518-5.57-.01-7.696z"
+        fill="red"
+      />
+      <path d="M6.4 8.003l4.146-2.4L6.4 3.2v4.802z" fill="#fff" />
+    </g>
+    <defs>
+      <clipPath id="prefix__clip0_2_20642">
+        <path fill="#fff" d="M0 0h16v11.25H0z" />
+      </clipPath>
+    </defs>
+  </svg>
+);
