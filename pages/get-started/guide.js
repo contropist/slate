@@ -5,11 +5,10 @@ import * as SVG from "~/common/svg";
 import WebsitePrototypeWrapper from "~/components/core/WebsitePrototypeWrapper";
 import WebsiteHeader from "~/components/core/WebsiteHeader";
 import WebsiteFooter from "~/components/core/WebsiteFooter";
+import * as JumperPrototype from "~/components/landing/jumperPrototype";
 
 import { css } from "@emotion/react";
 import { useEventListener } from "~/common/hooks";
-import { convertToV1Slate } from "~/common/conversions";
-import e from "express";
 
 const STYLES_ROOT = css`
   width: 100%;
@@ -68,7 +67,7 @@ const STYLES_BODY = css`
   font-size: 18px;
   line-height: 28px;
   letter-spacing: -0.01em;
-  margin-bottom: 16px;
+  margin-bottom: 49px;
 
   @keyframes fade-in {
     0% {
@@ -116,6 +115,61 @@ const STYLES_BUTTON = css`
     color: ${Constants.semantic.textWhite};
   }
 `;
+
+const VIEWS_ACTIONS = [
+  { label: "Current Window" },
+  { label: "All Open Tabs" },
+  { label: "Recent" },
+];
+
+const CUSTOM_VIEWS_ACTIONS = [
+  { label: "Twitter", Favicon: SVG.TwitterFavicon },
+  { label: "Youtube", Favicon: SVG.YoutubeFavicon },
+];
+
+const OBJECTS = [
+  {
+    title: "Concrete Architecture (@architeg) / Twitter",
+    Favicon: SVG.TwitterFavicon,
+    isSaved: true,
+  },
+  {
+    title: "Paul Prudence on Twitter: Computers and Automation [August-12-2022]",
+    isSelected: true,
+    Favicon: SVG.TwitterFavicon,
+  },
+  {
+    title: "Concrete Architecture (@architeg) / Twitter",
+    Favicon: SVG.TwitterFavicon,
+  },
+  {
+    title: "Concrete Architecture (@architeg) / Twitter",
+    Favicon: SVG.TwitterFavicon,
+    isSaved: true,
+  },
+  {
+    title: "Concrete Architecture (@architeg) / Twitter",
+    Favicon: SVG.TwitterFavicon,
+    isSaved: true,
+  },
+  {
+    title: "Concrete Architecture (@architeg) / Twitter",
+    Favicon: SVG.TwitterFavicon,
+  },
+  {
+    title: "Concrete Architecture (@architeg) / Twitter",
+    Favicon: SVG.TwitterFavicon,
+  },
+  {
+    title: "Concrete Architecture (@architeg) / Twitter",
+    Favicon: SVG.TwitterFavicon,
+  },
+  {
+    title: "Concrete Architecture (@architeg) / Twitter",
+    Favicon: SVG.TwitterFavicon,
+    isSaved: true,
+  },
+];
 
 const useGuideKeyCommands = (handleNext, handlePrev) => {
   console.log("ping");
@@ -167,6 +221,43 @@ export default function Guide(props) {
         <div css={STYLES_CONTAINER}>
           <div css={STYLES_HEADING}>{props.heading}</div>
           <div css={STYLES_BODY}>{props.body}</div>
+          <JumperPrototype.TopPanel>
+            {VIEWS_ACTIONS.map((action) => (
+              <JumperPrototype.ViewAction key={action.label}>
+                {action.label}
+              </JumperPrototype.ViewAction>
+            ))}
+            <JumperPrototype.Divider
+              height="none"
+              width="1px"
+              style={{ margin: "0px 4px", flexShrink: 0 }}
+            />
+            {CUSTOM_VIEWS_ACTIONS.map((action, i) => (
+              <JumperPrototype.ViewAction
+                isSelected={i === 0}
+                key={action.label}
+                Favicon={action.Favicon}
+              >
+                {action.label}
+              </JumperPrototype.ViewAction>
+            ))}
+            <JumperPrototype.ViewAddButton style={{ marginLeft: "auto" }} />
+          </JumperPrototype.TopPanel>
+          <JumperPrototype.Root style={{ marginTop: 16 }}>
+            <JumperPrototype.Header />
+            <JumperPrototype.Divider />
+            <JumperPrototype.Body>
+              {OBJECTS.map((object) => (
+                <JumperPrototype.Object
+                  key={object.title}
+                  title={object.title}
+                  Favicon={object.Favicon}
+                  isSelected={object.isSelected}
+                  isSaved={object.isSaved}
+                />
+              ))}
+            </JumperPrototype.Body>
+          </JumperPrototype.Root>
           <div css={STYLES_FLEX}>
             <a css={STYLES_BUTTON} href={props.prev} style={{ marginRight: `12px` }}>
               <SVG.LeftArrow height={16} width={16} />
