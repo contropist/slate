@@ -63,6 +63,8 @@ const REJECT_LIST = [
   "data",
   "timeout",
   "please-dont-use-timeout",
+  "faqs",
+  "about",
 ];
 
 export const userRoute = (text) => {
