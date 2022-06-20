@@ -11,6 +11,7 @@ import WebsiteHeader from "~/components/core/WebsiteHeader";
 import WebsiteFooter from "~/components/core/WebsiteFooter";
 
 import { css } from "@emotion/react";
+import { useGuideKeyCommands } from "./guide/guide";
 
 const STYLES_ROOT = css`
   width: 100%;
@@ -24,12 +25,17 @@ const STYLES_ROOT = css`
 const STYLES_CONTAINER = css`
   max-width: 700px;
   margin: 0 auto;
-  padding: 80px 0;
+  padding: 64px 0;
 
   @media (max-width: ${Constants.sizes.mobile}px) {
     max-width: 480px;
     padding: 96px 16px;
   }
+`;
+
+const STYLES_IMG = css`
+  width: 100%;
+  margin-bottom: 40px;
 `;
 
 const STYLES_HEADING = css`
@@ -135,11 +141,16 @@ export default function InstallPage() {
   const image =
     "https://slate.textile.io/ipfs/bafkreifww37ypduoi5pvj2cuikz7iycp7l5h7czke6lcboukkaqkoab3t4";
   const slate = "../public/static/Slate_volumetric.png";
+  const next =
+    "https://chrome.google.com/webstore/detail/slate-web-extension/gloembacbehhbfbkcfjmloikeeaebnoc?hl=en-US";
+  const prev = "../guide/new-tab";
+  useGuideKeyCommands(next, prev);
 
   return (
     <WebsitePrototypeWrapper title={title} description={description} url={url} image={image}>
       <div css={STYLES_ROOT}>
         <div css={STYLES_CONTAINER}>
+          <img css={STYLES_IMG} src="../public/static/slate-jumper.png" />
           <div css={STYLES_HEADING}>Get started with Slate for Free</div>
           <div css={STYLES_BODY}>Slate is free to use, with monthly premium plan coming soom.</div>
           <a css={STYLES_BUTTON} href="../get-started">

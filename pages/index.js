@@ -24,12 +24,17 @@ const STYLES_ROOT = css`
 const STYLES_CONTAINER = css`
   max-width: 700px;
   margin: 0 auto;
-  padding: 80px 0;
+  padding: 40px 0;
 
   @media (max-width: ${Constants.sizes.mobile}px) {
     max-width: 480px;
     padding: 96px 16px;
   }
+`;
+
+const STYLES_IMG = css`
+  width: 100%;
+  margin-bottom: 40px;
 `;
 
 const STYLES_HEADING = css`
@@ -147,6 +152,7 @@ export default function IndexPage() {
       <WebsiteHeader />
       <div css={STYLES_ROOT}>
         <div css={STYLES_CONTAINER}>
+          <img css={STYLES_IMG} src="../public/static/browser-tabs.png" />
           <div css={STYLES_HEADING}>
             Search your internet memory
             <span css={STYLES_CURSOR_BLINK} />

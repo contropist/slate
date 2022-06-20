@@ -17,7 +17,7 @@ const STYLES_CONTAINER = css`
   margin: 0 auto;
   width: 100%;
   font-family: ${Constants.font.text};
-  color: ${Constants.semantic.textGrayDark};
+  color: ${Constants.semantic.textGray};
   font-weight: 400;
   font-size: 14px;
   line-height: 28px;
@@ -37,7 +37,7 @@ const STYLES_LINK = css`
   font-size: 14px;
   line-height: 28px;
   letter-spacing: -0.01px;
-  color: ${Constants.semantic.textGrayDark};
+  color: ${Constants.semantic.textGray};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -99,10 +99,10 @@ export const WebsiteFooter = (props) => {
       <div css={STYLES_CONTAINER} style={props.style}>
         <div css={STYLES_FLEX}>
           <div css={STYLES_FLEX_LEFT}>
-            <a css={STYLES_LINK} style={{ marginRight: `16px` }} href="/about-us">
+            <a css={STYLES_LINK} style={{ marginRight: `16px` }} href="/about">
               About Us
             </a>
-            <a css={STYLES_LINK} style={{ marginRight: `16px` }} href="/faq">
+            <a css={STYLES_LINK} style={{ marginRight: `16px` }} href="/faqs">
               FAQs
             </a>
           </div>
