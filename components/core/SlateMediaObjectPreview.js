@@ -88,8 +88,8 @@ export default class SlateMediaObjectPreview extends React.Component {
   };
 
   setImage = () => {
-    let type = this.props.file.type;
-    let coverImage = this.props.file.coverImage;
+    let { type } = this.props.file;
+    let { coverImage } = this.props.file;
     let url;
     if (type && Validations.isPreviewableImage(type)) {
       url = Strings.getURLfromCID(this.props.file.cid);
@@ -104,7 +104,7 @@ export default class SlateMediaObjectPreview extends React.Component {
   };
 
   render() {
-    const file = this.props.file;
+    const { file } = this.props;
     const coverImage = this.props.file?.coverImage;
 
     let url = Utilities.getImageUrlIfExists(file);
@@ -208,7 +208,7 @@ export default class SlateMediaObjectPreview extends React.Component {
             fallback={
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <img
-                  src="https://slate.textile.io/ipfs/bafkreib5mnvds3cpe7ot7ibrakmrnja2hv5tast3giiarpl5nun7jpdt5m"
+                  src={`${Constants.gateways.ipfs}/bafkreib5mnvds3cpe7ot7ibrakmrnja2hv5tast3giiarpl5nun7jpdt5m`}
                   alt=""
                   height={this.props.previewPanel ? "80" : "64"}
                 />
@@ -247,7 +247,7 @@ export default class SlateMediaObjectPreview extends React.Component {
       >
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
           <img
-            src="https://slate.textile.io/ipfs/bafkreib5mnvds3cpe7ot7ibrakmrnja2hv5tast3giiarpl5nun7jpdt5m"
+            src={`${Constants.gateways.ipfs}/bafkreib5mnvds3cpe7ot7ibrakmrnja2hv5tast3giiarpl5nun7jpdt5m`}
             alt=""
             height={this.props.previewPanel ? "80" : "64"}
           />

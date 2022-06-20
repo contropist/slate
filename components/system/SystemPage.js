@@ -143,7 +143,7 @@ export default class SystemPage extends React.Component {
           <meta property="og:description" content={description} />
           <meta
             property="og:image"
-            content="https://slate.textile.io/ipfs/bafkreifknnc7rs7u7qrwc72dzaazzk3f3r4dnp3m4cuzdnr5zfckaet3se"
+            content={`${Constants.gateways.ipfs}/bafkreifknnc7rs7u7qrwc72dzaazzk3f3r4dnp3m4cuzdnr5zfckaet3se`}
           />
 
           <meta property="twitter:card" content="summary_large_image" />
@@ -152,7 +152,7 @@ export default class SystemPage extends React.Component {
           <meta property="twitter:description" content={description} />
           <meta
             property="twitter:image"
-            content="https://slate.textile.io/ipfs/bafkreifknnc7rs7u7qrwc72dzaazzk3f3r4dnp3m4cuzdnr5zfckaet3se"
+            content={`${Constants.gateways.ipfs}/bafkreifknnc7rs7u7qrwc72dzaazzk3f3r4dnp3m4cuzdnr5zfckaet3se`}
           />
 
           <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png" />

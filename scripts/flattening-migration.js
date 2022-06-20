@@ -207,13 +207,13 @@ const addFileColumns = async () => {
 
 const defaultPhotos = [
   "https://slate.host/static/a1.jpg",
-  "https://slate.textile.io/ipfs/bafkreigjofaa2wvmcoi5vbe3h32cbqh35d35wdhodfxwgmfky3gcur6s5i",
-  "https://slate.textile.io/ipfs/bafkreiaycwt6m3jabhetfqnsb63z2lx65vzepp5ejk2b56vxypwxiet6c4",
-  "https://slate.textile.io/ipfs/bafkreifvdvygknj66bfqdximxmxobqelwhd3xejiq3vfplhzkopcfdetrq",
-  "https://slate.textile.io/ipfs/bafkreihm3srxvhfppm2dvldw224v4m3prcc3b6pwe3rtuxpsu6wwjpgzpa",
-  "https://slate.textile.io/ipfs/bafkreiardkkfxj3ip373ee2tf6ffivjqclq7ionemt6pw55e6hv7ws5pvu",
-  "https://slate.textile.io/ipfs/bafkreick3nscgixwfpq736forz7kzxvvhuej6kszevpsgmcubyhsx2pf7i",
-  "https://slate.textile.io/ipfs/bafkreibf3hoiyuk2ywjyoy24ywaaclo4k5rz53flesvr5h4qjlyzxamozm",
+  `${Constants.gateways.ipfs}/bafkreigjofaa2wvmcoi5vbe3h32cbqh35d35wdhodfxwgmfky3gcur6s5i`,
+  `${Constants.gateways.ipfs}/bafkreiaycwt6m3jabhetfqnsb63z2lx65vzepp5ejk2b56vxypwxiet6c4`,
+  `${Constants.gateways.ipfs}/bafkreifvdvygknj66bfqdximxmxobqelwhd3xejiq3vfplhzkopcfdetrq`,
+  `${Constants.gateways.ipfs}/bafkreihm3srxvhfppm2dvldw224v4m3prcc3b6pwe3rtuxpsu6wwjpgzpa`,
+  `${Constants.gateways.ipfs}/bafkreiardkkfxj3ip373ee2tf6ffivjqclq7ionemt6pw55e6hv7ws5pvu`,
+  `${Constants.gateways.ipfs}/bafkreick3nscgixwfpq736forz7kzxvvhuej6kszevpsgmcubyhsx2pf7i`,
+  `${Constants.gateways.ipfs}/bafkreibf3hoiyuk2ywjyoy24ywaaclo4k5rz53flesvr5h4qjlyzxamozm`,
 ];
 
 const defaultBody = ["A user of Slate.", "", "A slate."];
@@ -226,7 +226,7 @@ const migrateUserTable = async () => {
       console.log(count);
     }
     count += 1;
-    let data = user.data;
+    let { data } = user;
     let newUser = {
       name: data.name,
       body: data.body.slice(0, 2000),
@@ -280,7 +280,7 @@ const migrateSlateTable = async () => {
   for (let slate of slates) {
     let coverImage = Utilities.selectSlateCoverImage(slate.objects);
 
-    let data = slate.data;
+    let { data } = slate;
     let newSlate = {
       name: data.name,
       body: data.body ? data.body.slice(0, 2000) : null,
@@ -334,7 +334,7 @@ const migrateFileTable = async () => {
     //   console.log({ unity: newFile.data.unity });
     // }
 
-    let coverImage = data.coverImage;
+    let { coverImage } = data;
     if (coverImage) {
       // console.log({ coverImage });
       let newCoverImage = {
