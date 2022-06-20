@@ -28,7 +28,6 @@ const STYLES_JUMPER_ROOT = (theme) => css`
   overflow: hidden;
 
   background-color: ${theme.semantic.white};
-  border-radius: 16px;
   @supports ((-webkit-backdrop-filter: blur(75px)) or (backdrop-filter: blur(75px))) {
     -webkit-backdrop-filter: blur(75px);
     backdrop-filter: blur(75px);
@@ -57,7 +56,7 @@ function Header({ ...props }) {
   return (
     <div css={STYLES_JUMPER_HEADER} {...props}>
       <SVG.Link width={20} height={20} />
-      <System.H3 color="textGrayLight" style={{ marginLeft: 12 }}>
+      <System.H3 color="textGrayLight" style={{ marginLeft: 12, marginTop: 3, marginBottom: 1 }}>
         Search by keywords or #tags
       </System.H3>
     </div>
@@ -111,7 +110,11 @@ function Object({ title, isSelected, isSaved, Favicon, ...props }) {
   return (
     <div css={[STYLES_JUMPER_OBJECT, isSelected && STYLES_JUMPER_OBJECT_IS_SELECTED]} {...props}>
       {isSelected ? <div css={STYLES_JUMPER_OBJECT_CHECKBOX} /> : <Favicon />}
-      <System.H5 color="textBlack" nbrOflines={1} style={{ marginLeft: 12, maxWidth: 438 }}>
+      <System.H5
+        color="textBlack"
+        nbrOflines={1}
+        style={{ marginLeft: 12, marginTop: 3, marginBottom: 1, maxWidth: 438 }}
+      >
         {title}
       </System.H5>
       <div css={Styles.HORIZONTAL_CONTAINER} style={{ marginLeft: "auto" }}>
@@ -199,7 +202,7 @@ const ViewAction = ({ children, Favicon, isSelected }) => {
           }}
         />
       )}
-      {children}
+      <System.H5>{children}</System.H5>
     </div>
   );
 };

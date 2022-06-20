@@ -1,16 +1,13 @@
 import * as React from "react";
 import * as Constants from "~/common/constants";
-import * as SVGLogo from "~/common/logo";
 import * as SVG from "~/common/svg";
-import * as System from "~/components/system";
-import * as Validations from "~/common/validations";
-import * as Strings from "~/common/strings";
 
 import WebsitePrototypeWrapper from "~/components/core/WebsitePrototypeWrapper";
 import WebsiteHeader from "~/components/core/WebsiteHeader";
 import WebsiteFooter from "~/components/core/WebsiteFooter";
 
 import { css } from "@emotion/react";
+import { useGuideKeyCommands } from "./guide/guide";
 
 const STYLES_ROOT = css`
   width: 100%;
@@ -142,6 +139,8 @@ export default function IndexPage() {
   const url = "https://slate.host/";
   const image =
     "https://slate.textile.io/ipfs/bafkreifww37ypduoi5pvj2cuikz7iycp7l5h7czke6lcboukkaqkoab3t4";
+  const next = "../guide/browser-control";
+  useGuideKeyCommands(next);
 
   return (
     <WebsitePrototypeWrapper title={title} description={description} url={url} image={image}>
@@ -157,7 +156,7 @@ export default function IndexPage() {
             about on the web. It’s a lightweight tool designed to make the internet feel a little
             more personal.
           </div>
-          <a css={STYLES_BUTTON} href="../get-started">
+          <a css={STYLES_BUTTON} href={next}>
             Get Started <SVG.RightArrow height={20} width={20} style={{ marginLeft: 8 }} />
           </a>
         </div>

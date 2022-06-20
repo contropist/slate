@@ -1,7 +1,8 @@
 import * as React from "react";
 import * as Constants from "~/common/constants";
+import * as JumperPrototype from "~/components/landing/jumperPrototype";
 
-import Guide from "~/pages/get-started/guide.js";
+import Guide from "~/pages/guide/guide.js";
 
 import { css } from "@emotion/react";
 

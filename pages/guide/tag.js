@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as Constants from "~/common/constants";
 
-import Guide from "~/pages/get-started/guide.js";
+import Guide from "~/pages/guide/guide.js";
 
 import { css } from "@emotion/react";
 
