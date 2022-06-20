@@ -14,8 +14,7 @@ import { Link } from "~/components/core/Link";
 import ProcessedText from "~/components/core/ProcessedText";
 import SlateMediaObjectPreview from "~/components/core/SlateMediaObjectPreview";
 
-const placeholder =
-  "https://slate.textile.io/ipfs/bafkreidq27ycqubd4pxbo76n3rv5eefgxl3a2lh3wfvdgtil4u47so3nqe";
+const placeholder = `${Constants.gateways.ipfs}/bafkreidq27ycqubd4pxbo76n3rv5eefgxl3a2lh3wfvdgtil4u47so3nqe`;
 
 const STYLES_IMAGE_ROW = css`
   overflow: hidden;
@@ -39,8 +38,10 @@ const STYLES_ITEM_BOX = css`
 const STYLES_PLACEHOLDER = css`
   width: 100%;
   height: 320px;
-  ${"" /* background-size: cover;
-  background-position: 50% 50%; */}
+  ${
+    "" /* background-size: cover;
+  background-position: 50% 50%; */
+  }
   ${"" /* margin-bottom: 4px; */}
   background-color: #d2d7db;
   font-family: ${Constants.font.text};
@@ -57,7 +58,7 @@ const STYLES_PLACEHOLDER = css`
 
 export class SlatePreviewRow extends React.Component {
   render() {
-    let objects = this.props.objects;
+    let { objects } = this.props;
     let components = objects.slice(1).map((each) => (
       <div key={each.id} css={STYLES_ITEM_BOX}>
         <SlateMediaObjectPreview
@@ -245,7 +246,7 @@ export class SlatePreviewBlock extends React.Component {
   };
 
   render() {
-    const slate = this.props.slate;
+    const { slate } = this.props;
     let objects = [];
     if (slate.coverImage) {
       objects = [slate.coverImage];

@@ -3,6 +3,7 @@ import * as Strings from "~/common/strings";
 import * as Styles from "~/common/styles";
 import * as Actions from "~/common/actions";
 import * as Events from "~/common/custom-events";
+import * as Constants from "~/common/constants";
 
 import WebsitePrototypeWrapper from "~/components/core/WebsitePrototypeWrapper";
 
@@ -395,8 +396,7 @@ const Checkbox = ({ touched, value, style, isSelected, ...props }) => {
   );
 };
 
-const background_image =
-  "https://slate.textile.io/ipfs/bafybeiddgkvf5ta6y5b7wamrxl33mtst4detegleblw4gfduhwm3sdwdra";
+const background_image = `${Constants.gateways.ipfs}/bafybeiddgkvf5ta6y5b7wamrxl33mtst4detegleblw4gfduhwm3sdwdra`;
 
 const STYLES_ROOT = css`
   display: flex;

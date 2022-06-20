@@ -14,7 +14,7 @@ export default class SystemPageRoot extends React.Component {
         url="https://slate.host/_/system"
       >
         <img
-          src="https://slate.textile.io/ipfs/bafybeidu5v3ytcy3ynghrmu7zftfinpt3s5pghqmpytrohmpk57ba4suye"
+          src={`${Constants.gateways.ipfs}/bafybeidu5v3ytcy3ynghrmu7zftfinpt3s5pghqmpytrohmpk57ba4suye`}
           style={{
             display: "inline-flex",
             width: "100%",
@@ -29,7 +29,7 @@ export default class SystemPageRoot extends React.Component {
           The <strong>Slate Design System</strong> is an open source resource with examples of
           components, constants, and experiences. Any code changes made to the components in the
           Design System will change the appearance and function of{" "}
-          <a href="https://slate.host" target="_blank">
+          <a href="https://slate.host" target="_blank" rel="noreferrer">
             Slate
           </a>{" "}
           in production. <br />
@@ -38,11 +38,15 @@ export default class SystemPageRoot extends React.Component {
           freely use the code to make their own applications on top of the{" "}
           <a href="https://filecoin.io">Filecoin Network</a>. A lot of the functionality of Slate is
           made possible by{" "}
-          <a href="https://github.com/textileio/js-powergate-client" target="_blank">
+          <a
+            href="https://github.com/textileio/js-powergate-client"
+            target="_blank"
+            rel="noreferrer"
+          >
             Textile's Powergate
           </a>{" "}
           and{" "}
-          <a href="https://github.com/textileio/js-hub" target="_blank">
+          <a href="https://github.com/textileio/js-hub" target="_blank" rel="noreferrer">
             Textile's Hub
           </a>
           .
@@ -54,7 +58,11 @@ export default class SystemPageRoot extends React.Component {
         <System.P1>
           You can use these components, experiences, and constants in your own React projects.
           First, install the{" "}
-          <a href="https://www.npmjs.com/package/slate-react-system" target="_blank">
+          <a
+            href="https://www.npmjs.com/package/slate-react-system"
+            target="_blank"
+            rel="noreferrer"
+          >
             npm module
           </a>
           :

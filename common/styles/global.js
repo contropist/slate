@@ -6,12 +6,12 @@ import { css } from "@emotion/react";
 export const injectGlobalStyles = () => css`
   @font-face {
     font-family: 'mono';
-    src: url('https://slate.textile.io/ipfs/bafkreialkhtjtpwocdadbmra3o7mii47bzgl3k2v2ossrpvhk3qqsbqtza');
+    src: url('${Constants.gateways.ipfs}/bafkreialkhtjtpwocdadbmra3o7mii47bzgl3k2v2ossrpvhk3qqsbqtza');
   }
 
   @font-face {
     font-family: 'mono-bold';
-    src: url('https://slate.textile.io/ipfs/bafkreigaktonxehwl5bzah5ze4iruw272qybj22wpy32pgrcka3y4jvhc4');
+    src: url('${Constants.gateways.ipfs}/bafkreigaktonxehwl5bzah5ze4iruw272qybj22wpy32pgrcka3y4jvhc4');
   }
 
   @font-face {
@@ -36,22 +36,22 @@ export const injectGlobalStyles = () => css`
 
   @font-face {
     font-family: 'fira-code-regular';
-    src: url('https://slate.textile.io/ipfs/bafkreibtxh3xdwh6rp2k2uhtjssialbm25girhsck7qks2psycnzwvmtke');
+    src: url('${Constants.gateways.ipfs}/bafkreibtxh3xdwh6rp2k2uhtjssialbm25girhsck7qks2psycnzwvmtke');
   }
 
   @font-face {
     font-family: 'fira-code-bold';
-    src: url('https://slate.textile.io/ipfs/bafkreidyich64vyb4nqzvn6uvfcgsbegafe7dqd2ks4wjtcg5jwte6aetm');
+    src: url('${Constants.gateways.ipfs}/bafkreidyich64vyb4nqzvn6uvfcgsbegafe7dqd2ks4wjtcg5jwte6aetm');
   }
 
   @font-face {
     font-family: 'jet-brains-regular';
-    src: url('https://slate.textile.io/ipfs/bafkreiabqv4534pnjhohcc2aclsgbp2twugldrlzg6wqdehajerrcwgu7e');
+    src: url('${Constants.gateways.ipfs}/bafkreiabqv4534pnjhohcc2aclsgbp2twugldrlzg6wqdehajerrcwgu7e');
   }
 
   @font-face {
     font-family: 'jet-brains-bold';
-    src: url('https://slate.textile.io/ipfs/bafkreiejfxvbejf4a56x5tdo6w3n2kkrynwniv65rkkmrozxujroq6v4am');
+    src: url('${Constants.gateways.ipfs}/bafkreiejfxvbejf4a56x5tdo6w3n2kkrynwniv65rkkmrozxujroq6v4am');
   }
 
   html, body, div, span, applet, object, iframe,

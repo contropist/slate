@@ -191,7 +191,7 @@ export const theme = {
 };
 
 export const gateways = {
-  ipfs: "https://slate.textile.io/ipfs",
+  ipfs: "https://ipfs.io/ipfs",
 };
 
 export const hostname = "https://slate.host";
@@ -234,8 +234,7 @@ export const grids = {
   },
 };
 
-export const profileDefaultPicture =
-  "https://slate.textile.io/ipfs/bafkreick3nscgixwfpq736forz7kzxvvhuej6kszevpsgmcubyhsx2pf7i";
+export const profileDefaultPicture = `${gateways.ipfs}/bafkreick3nscgixwfpq736forz7kzxvvhuej6kszevpsgmcubyhsx2pf7i`;
 
 export const textile = {
   threadName: "buckets",

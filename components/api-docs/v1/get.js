@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as System from "~/components/system";
+import * as Constants from "~/common/constants";
 
 import CodeBlock from "~/components/system/CodeBlock";
 
@@ -81,7 +82,7 @@ const EXAMPLE_RESPONSE = `
           {
             "id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             "cid": "bafkreibrpxcv37juaq67it2gu7xyjo5fzq7v3r55ykcgzylvsfljcv3s3a",
-            "url": "https://slate.textile.io/ipfs/cid-goes-here",
+            "url": "${Constants.gateways.ipfs}/cid-goes-here",
             "name": "door.jpg",
             "size": 33676,
             "type": "image/jpeg",
@@ -98,7 +99,7 @@ const EXAMPLE_RESPONSE = `
   "user": {
     "username": "devexamples",
     "data": {
-      "photo": "https://slate.textile.io/ipfs/cid-goes-here",
+      "photo": "${Constants.gateways.ipfs}/cid-goes-here",
       "body": "A user of slate",
       "name": "Bob Smith"
     }
@@ -107,8 +108,8 @@ const EXAMPLE_RESPONSE = `
 
 export default class APIDocsGet extends React.Component {
   render() {
-    let APIKey = this.props.APIKey;
-    let language = this.props.language;
+    let { APIKey } = this.props;
+    let { language } = this.props;
 
     let code = {
       javascript: EXAMPLE_CODE_JS(APIKey),
