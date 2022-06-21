@@ -138,7 +138,7 @@ export default class GuidelinesPage extends React.Component {
     const title = `Slate: Community Guidelines`;
     const description =
       "We believe that our mission is best served in an environment that is friendly, safe, and accepting.";
-    const url = "https://slate.host/guidelines-new";
+    const url = "https://slate.host/guidelines";
 
     return (
       <WebsitePrototypeWrapper title={title} description={description} url={url}>

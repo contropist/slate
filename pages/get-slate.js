@@ -1,6 +1,10 @@
 import * as React from "react";
 import * as Constants from "~/common/constants";
+import * as SVGLogo from "~/common/logo";
 import * as SVG from "~/common/svg";
+import * as System from "~/components/system";
+import * as Validations from "~/common/validations";
+import * as Strings from "~/common/strings";
 
 import WebsitePrototypeWrapper from "~/components/core/WebsitePrototypeWrapper";
 import WebsiteHeader from "~/components/core/WebsiteHeader";
@@ -12,11 +16,8 @@ import { useGuideKeyCommands } from "./guide/guide";
 const STYLES_ROOT = css`
   width: 100%;
   height: 100%;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 52px;
   overflow: hidden;
-  height: calc(100vh - 113px);
+  height: 100vh;
   background-color: ${Constants.semantic.bgLight};
   color: ${Constants.semantic.textBlack};
 `;
@@ -24,7 +25,7 @@ const STYLES_ROOT = css`
 const STYLES_CONTAINER = css`
   max-width: 700px;
   margin: 0 auto;
-  padding: 40px 0;
+  padding: 64px 0;
 
   @media (max-width: ${Constants.sizes.mobile}px) {
     max-width: 480px;
@@ -129,41 +130,32 @@ const STYLES_BUTTON = css`
   line-height: 20px;
   text-decoration: none;
   cursor: pointer;
-  border: 2px solid ${Constants.semantic.borderGray};
-  color: ${Constants.semantic.textBlack};
-
-  :hover {
-    background-color: ${Constants.semantic.textGray};
-    color: ${Constants.semantic.textWhite};
-  }
+  background-color: ${Constants.system.blue};
+  color: ${Constants.semantic.textWhite};
 `;
 
-export default function IndexPage() {
-  const title = `Slate`;
-  const description = "Your personal search engine";
-  const url = "https://slate.host/";
+export default function InstallPage() {
+  const title = `Install Slate for Chrome - Slate`;
+  const description = "Install Slate from Chrome web store";
+  const url = "https://slate.host/get-slate";
   const image =
     "https://slate.textile.io/ipfs/bafkreifww37ypduoi5pvj2cuikz7iycp7l5h7czke6lcboukkaqkoab3t4";
-  const next = "../guide/browser-control";
-  useGuideKeyCommands(next);
+  const slate = "../public/static/Slate_volumetric.png";
+  const next =
+    "https://chrome.google.com/webstore/detail/slate-web-extension/gloembacbehhbfbkcfjmloikeeaebnoc?hl=en-US";
+  const prev = "../guide/new-tab";
+  useGuideKeyCommands(next, prev);
 
   return (
     <WebsitePrototypeWrapper title={title} description={description} url={url} image={image}>
-      <WebsiteHeader />
       <div css={STYLES_ROOT}>
         <div css={STYLES_CONTAINER}>
-          <img css={STYLES_IMG} src="../public/static/browser-tabs.png" />
-          <div css={STYLES_HEADING}>
-            Search your internet memory
-            <span css={STYLES_CURSOR_BLINK} />
-          </div>
-          <div css={STYLES_BODY}>
-            Slate is a Chrome extension that helps you save, organize and search stuff you care
-            about on the web. It’s a lightweight tool designed to make the internet feel a little
-            more personal.
-          </div>
-          <a css={STYLES_BUTTON} href={next}>
-            Get Started <SVG.RightArrow height={20} width={20} style={{ marginLeft: 8 }} />
+          <img css={STYLES_IMG} src="../public/static/slate-jumper.png" />
+          <div css={STYLES_HEADING}>Get started with Slate for Free</div>
+          <div css={STYLES_BODY}>Slate is free to use, with monthly premium plan coming soom.</div>
+          <a css={STYLES_BUTTON} href="../get-started">
+            <SVG.RightArrow height={20} width={20} style={{ marginRight: 8 }} />
+            Get Slate from Chrome Store{" "}
           </a>
         </div>
       </div>

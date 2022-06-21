@@ -1,28 +1,32 @@
 import * as React from "react";
 import * as Constants from "~/common/constants";
+import * as SVG from "~/common/svg";
 
 import { css } from "@emotion/react";
 
 const STYLES_ROOT = css`
+  position: fixed;
+  bottom: 0;
   width: 100%;
   margin: 0 auto;
-  background-color: ${Constants.semantic.bgGrayLight};
+  background-color: ${Constants.semantic.bgLight};
 `;
 
 const STYLES_CONTAINER = css`
   max-width: 1080px;
   margin: 0 auto;
   width: 100%;
-  font-family: ${Constants.font.medium};
+  font-family: ${Constants.font.text};
+  color: ${Constants.semantic.textGray};
   font-weight: 400;
   font-size: 14px;
   line-height: 28px;
   letter-spacing: -0.01px;
-  padding: 96px 24px;
+  padding: 16px;
 
   @media (max-width: ${Constants.sizes.mobile}px) {
     max-width: 480px;
-    padding: 40px 16px;
+    padding: 16px;
   }
 `;
 
@@ -33,8 +37,10 @@ const STYLES_LINK = css`
   font-size: 14px;
   line-height: 28px;
   letter-spacing: -0.01px;
-  margin: 4px 0 0 0;
-  color: ${Constants.semantic.textGrayDark};
+  color: ${Constants.semantic.textGray};
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const STYLES_FLEX = css`
@@ -44,11 +50,36 @@ const STYLES_FLEX = css`
   }
 `;
 
-const STYLES_CONTENT_BLOCK = css`
-  width: 25%;
-  margin-bottom: 24px;
-  @media (max-width: ${Constants.sizes.tablet}px) {
-    width: 50%;
+const STYLES_FLEX_BLOCK = css`
+  display: flex;
+  width: 33.3%;
+  @media (max-width: ${Constants.sizes.mobile}px) {
+    width: 100%;
+    padding: 4px 0;
+  }
+`;
+
+const STYLES_FLEX_RIGHT = css`
+  ${STYLES_FLEX_BLOCK};
+  justify-content: flex-end;
+  @media (max-width: ${Constants.sizes.mobile}px) {
+    justify-content: start;
+  }
+`;
+
+const STYLES_FLEX_CENTER = css`
+  ${STYLES_FLEX_BLOCK};
+  justify-content: center;
+  @media (max-width: ${Constants.sizes.mobile}px) {
+    justify-content: start;
+  }
+`;
+
+const STYLES_FLEX_LEFT = css`
+  ${STYLES_FLEX_BLOCK};
+  justify-content: flex-start;
+  @media (max-width: ${Constants.sizes.mobile}px) {
+    justify-content: start;
   }
 `;
 
@@ -56,55 +87,41 @@ const STYLES_HR = css`
   background-color: ${Constants.semantic.borderGrayLight4};
   width: 100%;
   height: 1px;
-  margin: 12px 0;
 `;
-
-const styleFlexFull = {
-  justifyContent: `space-between`,
-};
 
 export const WebsiteFooter = (props) => {
   const discordURL = "https://discord.gg/NRsUjpCypr";
   const twitterURL = "https://twitter.com/_slate";
-  const githubURL = "https://github.com/filecoin-project/slate/issues/126";
-  const extensionURL =
-    "https://chrome.google.com/webstore/detail/slate-web-extension/gloembacbehhbfbkcfjmloikeeaebnoc";
+  const mailtoSlate = "mailto:hello@slate.host?subject=Hello Slate Team";
   return (
     <div css={STYLES_ROOT}>
+      <div css={STYLES_HR} />
       <div css={STYLES_CONTAINER} style={props.style}>
-        <div>Slate - Your personal search engine</div>
-        <div css={STYLES_HR} />
         <div css={STYLES_FLEX}>
-          <div css={STYLES_CONTENT_BLOCK}>
-            <div>Resources</div>
-            <a css={STYLES_LINK} href={extensionURL}>
-              Slate for Chrome
+          <div css={STYLES_FLEX_LEFT}>
+            <a css={STYLES_LINK} style={{ marginRight: `16px` }} href="/about">
+              About Us
             </a>
-            <br />
-            <a css={STYLES_LINK} href={githubURL} target="_blank">
-              Github
+            <a css={STYLES_LINK} style={{ marginRight: `16px` }} href="/faqs">
+              FAQs
             </a>
           </div>
-          <div css={STYLES_CONTENT_BLOCK}>
-            <div>Contact & Support</div>
-            <a css={STYLES_LINK} href={twitterURL} target="_blank">
-              Twitter
+          <div css={STYLES_FLEX_CENTER}>
+            <span style={{ fontSize: `10px`, marginRight: `4px` }}>Ⓒ</span>2022 Slate. All rights
+            reserved.
+          </div>
+          <div css={STYLES_FLEX_RIGHT}>
+            <a css={STYLES_LINK} style={{ marginRight: `16px` }} href="/terms">
+              Terms of Service
             </a>
-            <br />
+            <a css={STYLES_LINK} style={{ marginRight: `16px` }} href={mailtoSlate} target="_blank">
+              <SVG.Mail height={20} width={20} strokeWidth={1} />
+            </a>
+            <a css={STYLES_LINK} style={{ marginRight: `12px` }} href={twitterURL} target="_blank">
+              <SVG.Twitter height={20} width={20} strokeWidth={1} />
+            </a>
             <a css={STYLES_LINK} href={discordURL} target="_blank">
-              Discord
-            </a>
-          </div>
-        </div>
-        <div css={STYLES_HR} />
-        <div css={STYLES_FLEX} style={styleFlexFull}>
-          <div />
-          <div>
-            <a css={STYLES_LINK} style={{ marginRight: `32px` }} href="/terms">
-              Terms of service
-            </a>
-            <a css={STYLES_LINK} href="/guidelines">
-              Community guidelines
+              <SVG.Discord height={21} width={24} strokeWidth={1} />
             </a>
           </div>
         </div>

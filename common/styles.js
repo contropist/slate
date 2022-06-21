@@ -69,7 +69,7 @@ export const H4 = css`
 
 export const H5 = css`
   font-family: ${Constants.font.medium};
-  font-size: 14px;
+  font-size: 15px;
   line-height: 20px;
   letter-spacing: -0.006px;
 

@@ -123,6 +123,7 @@ export const semantic = {
   borderDark: system.grayDark6,
   borderGrayDark: system.grayDark5,
   borderGrayLight4: system.grayLight4,
+  borderGray: system.gray,
 
   bgBlue: system.blueLight6,
   bgGreen: system.greenLight6,
