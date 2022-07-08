@@ -1,10 +1,6 @@
 import * as React from "react";
 import * as Constants from "~/common/constants";
-import * as SVGLogo from "~/common/logo";
 import * as SVG from "~/common/svg";
-import * as System from "~/components/system";
-import * as Validations from "~/common/validations";
-import * as Strings from "~/common/strings";
 
 import WebsitePrototypeWrapper from "~/components/core/WebsitePrototypeWrapper";
 import WebsiteHeader from "~/components/core/WebsiteHeader";
@@ -16,26 +12,43 @@ import { useGuideKeyCommands } from "./guide/guide";
 const STYLES_ROOT = css`
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  height: 100vh;
+  min-height: calc(100vh - 61px);
   background-color: ${Constants.semantic.bgLight};
   color: ${Constants.semantic.textBlack};
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: ${Constants.sizes.mobile}px) {
+    min-height: calc(100vh - 112px);
+  }
 `;
 
 const STYLES_CONTAINER = css`
   max-width: 700px;
   margin: 0 auto;
-  padding: 64px 0;
+  padding: 24px 0 96px 0;
 
   @media (max-width: ${Constants.sizes.mobile}px) {
     max-width: 480px;
-    padding: 96px 16px;
+    padding: 16px 16px 24px 16px;
   }
 `;
 
 const STYLES_IMG = css`
   width: 100%;
   margin-bottom: 40px;
+
+  @keyframes hero-fade-in {
+    0% {
+      opacity: 0%;
+      transform: translateY(5%);
+    }
+    100% {
+      opacity: 100%;
+      transform: translateY(0%);
+    }
+  }
+  animation: hero-fade-in 300ms ease-in-out;
 `;
 
 const STYLES_HEADING = css`
@@ -59,61 +72,54 @@ const STYLES_HEADING = css`
     font-size: 48px;
     line-height: 52px;
     letter-spacing: -0.04em;
+    margin-bottom: 13px;
   }
+
+  @keyframes heading-fade-in {
+    0% {
+      opacity: 0%;
+      transform: translateY(25%);
+    }
+    50% {
+      opacity: 0%;
+      transform: translateY(25%);
+    }
+    100% {
+      opacity: 100%;
+      transform: translateY(0%);
+    }
+  }
+  animation: heading-fade-in 400ms ease-in-out;
 `;
 
 const STYLES_BODY = css`
-  font-family: ${Constants.font.text};
+  font-family: ${Constants.font.medium};
   font-size: 20px;
   line-height: 28px;
-  letter-spacing: -0.01em;
-  margin-bottom: 40px;
-`;
+  letter-spacing: -0.015em;
+  margin-bottom: 32px;
 
-const STYLES_CURSOR_BLINK = css`
-  display: inline-block;
-  background-color: ${Constants.semantic.textGray};
-  width: 32px;
-  height: 61px;
-  margin-left: 6px;
-  overflow: visible;
-  animation: blink-animation 1s steps(5, start) infinite;
-  -webkit-animation: blink-animation 1s steps(5, start) infinite;
-  @keyframes blink-animation {
-    to {
-      visibility: hidden;
+  @keyframes body-fade-in {
+    0% {
+      opacity: 0%;
+      transform: translateY(50%);
+    }
+    50% {
+      opacity: 0%;
+      transform: translateY(50%);
+    }
+    100% {
+      opacity: 100%;
+      transform: translateY(0%);
     }
   }
-  @-webkit-keyframes blink-animation {
-    to {
-      visibility: hidden;
-    }
-  }
-  @media (max-width: ${Constants.sizes.tablet}px) {
-    width: 28.5px;
-    height: 47px;
-    margin-left: 4px;
-  }
-  @media (max-width: ${Constants.sizes.mobile}px) {
-    width: 21px;
-    height: 35px;
-    margin-left: 2px;
-  }
-`;
+  animation: body-fade-in 600ms ease-in-out;
 
-const STYLES_CURSOR_BLINK_SMALL = css`
-  ${STYLES_CURSOR_BLINK}
-  width: 25px;
-  height: 41px;
-  @media (max-width: ${Constants.sizes.tablet}px) {
-    width: 21px;
-    height: 35px;
-    margin-left: 2px;
-  }
   @media (max-width: ${Constants.sizes.mobile}px) {
-    width: 17.5px;
-    height: 29px;
-    margin-left: 2px;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
   }
 `;
 
@@ -128,10 +134,46 @@ const STYLES_BUTTON = css`
   font-family: ${Constants.font.medium};
   font-size: 18px;
   line-height: 20px;
+  letter-spacing: -0.015em;
   text-decoration: none;
   cursor: pointer;
-  background-color: ${Constants.system.blue};
+  margin-right: 16px;
+  margin-bottom: 16px;
+  @keyframes button-fade-in {
+    0% {
+      opacity: 0%;
+      transform: translateY(50%);
+    }
+    50% {
+      opacity: 0%;
+      transform: translateY(50%);
+    }
+    100% {
+      opacity: 100%;
+      transform: translateY(0%);
+    }
+  }
+  animation: button-fade-in 700ms ease-in-out;
+
+  @media (max-width: ${Constants.sizes.mobile}px) {
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    padding: 14px 20px;
+  }
+`;
+
+const STYLES_PRIMARY_BUTTON = css`
+  ${STYLES_BUTTON}
+  background-color: ${Constants.system.lime};
   color: ${Constants.semantic.textWhite};
+`;
+
+const STYLES_SECONDARY_BUTTON = css`
+  ${STYLES_BUTTON}
+  background-color: none;
+  border: 2px solid ${Constants.semantic.borderGray};
+  color: ${Constants.semantic.textBlack};
 `;
 
 export default function InstallPage() {
@@ -140,22 +182,28 @@ export default function InstallPage() {
   const url = "https://slate.host/get-slate";
   const image =
     "https://slate.textile.io/ipfs/bafkreifww37ypduoi5pvj2cuikz7iycp7l5h7czke6lcboukkaqkoab3t4";
-  const slate = "../public/static/Slate_volumetric.png";
-  const next =
-    "https://chrome.google.com/webstore/detail/slate-web-extension/gloembacbehhbfbkcfjmloikeeaebnoc?hl=en-US";
+  const next = "/_/auth";
   const prev = "../guide/new-tab";
   useGuideKeyCommands(next, prev);
 
   return (
     <WebsitePrototypeWrapper title={title} description={description} url={url} image={image}>
       <div css={STYLES_ROOT}>
+        <WebsiteHeader />
         <div css={STYLES_CONTAINER}>
           <img css={STYLES_IMG} src="../public/static/slate-jumper.png" />
-          <div css={STYLES_HEADING}>Get started with Slate for Free</div>
-          <div css={STYLES_BODY}>Slate is free to use, with monthly premium plan coming soom.</div>
-          <a css={STYLES_BUTTON} href="../get-started">
-            <SVG.RightArrow height={20} width={20} style={{ marginRight: 8 }} />
-            Get Slate from Chrome Store{" "}
+          <div css={STYLES_HEADING}>
+            Get started — <br />
+            it’s free.
+          </div>
+          <div css={STYLES_BODY}>
+            Slate is currently free to use, we’ll add premium features later on for you to use.
+          </div>
+          <a css={STYLES_PRIMARY_BUTTON} href="/_/auth">
+            Get started <SVG.RightArrow height={20} width={20} style={{ marginLeft: 8 }} />
+          </a>
+          <a css={STYLES_SECONDARY_BUTTON} href="../get-started">
+            Get Slate from Chrome store
           </a>
         </div>
       </div>

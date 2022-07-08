@@ -5,18 +5,18 @@ import * as SVG from "~/common/svg";
 import { css } from "@emotion/react";
 
 const STYLES_ROOT = css`
-  position: fixed;
-  bottom: 0;
   width: 100%;
   margin: 0 auto;
   background-color: ${Constants.semantic.bgLight};
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 `;
 
 const STYLES_CONTAINER = css`
   max-width: 1080px;
   margin: 0 auto;
   width: 100%;
-  font-family: ${Constants.font.text};
+  font-family: ${Constants.font.medium};
   color: ${Constants.semantic.textGray};
   font-weight: 400;
   font-size: 14px;
@@ -26,13 +26,13 @@ const STYLES_CONTAINER = css`
 
   @media (max-width: ${Constants.sizes.mobile}px) {
     max-width: 480px;
-    padding: 16px;
+    padding: 8px 16px;
   }
 `;
 
 const STYLES_LINK = css`
   text-decoration: none;
-  font-family: ${Constants.font.text};
+  font-family: ${Constants.font.medium};
   font-weight: 400;
   font-size: 14px;
   line-height: 28px;
@@ -55,7 +55,7 @@ const STYLES_FLEX_BLOCK = css`
   width: 33.3%;
   @media (max-width: ${Constants.sizes.mobile}px) {
     width: 100%;
-    padding: 4px 0;
+    padding: 2px 0;
   }
 `;
 

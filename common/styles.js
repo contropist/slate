@@ -25,6 +25,8 @@ const TEXT = css`
   overflow-wrap: break-word;
   text-align: left;
   font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 
   a {
     ${LINK}

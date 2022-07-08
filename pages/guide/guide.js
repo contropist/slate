@@ -4,7 +4,6 @@ import * as SVG from "~/common/svg";
 
 import WebsitePrototypeWrapper from "~/components/core/WebsitePrototypeWrapper";
 import WebsiteHeader from "~/components/core/WebsiteHeader";
-import WebsiteFooter from "~/components/core/WebsiteFooter";
 import Link from "next/link";
 
 import { css } from "@emotion/react";
@@ -13,13 +12,12 @@ import { useEventListener } from "~/common/hooks";
 const STYLES_ROOT = css`
   width: 100%;
   height: 100%;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 52px;
-  overflow: hidden;
-  height: calc(100vh - 113px);
+  min-height: 100vh;
   background-color: ${Constants.semantic.bgLight};
   color: ${Constants.semantic.textBlack};
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
 `;
 
 const STYLES_CONTAINER = css`
@@ -29,7 +27,7 @@ const STYLES_CONTAINER = css`
 
   @media (max-width: ${Constants.sizes.mobile}px) {
     max-width: 480px;
-    padding: 96px 16px;
+    padding: 32px 16px;
   }
 `;
 
@@ -42,11 +40,12 @@ const STYLES_HEADING = css`
   font-size: 40px;
   line-height: 40px;
   letter-spacing: -0.035em;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 
-  @media (max-width: ${Constants.sizes.tablet}px) {
-    font-size: 32px;
-    line-height: 40px;
+  @media (max-width: ${Constants.sizes.mobile}px) {
+    font-size: 24px;
+    line-height: 32px;
+    margin-bottom: 12px;
   }
 
   @keyframes heading-fade-in {
@@ -63,11 +62,12 @@ const STYLES_HEADING = css`
 `;
 
 const STYLES_BODY = css`
-  font-family: ${Constants.font.text};
+  font-family: ${Constants.font.medium};
   font-size: 18px;
   line-height: 28px;
-  letter-spacing: -0.01em;
-  margin-bottom: 49px;
+  letter-spacing: -0.015em;
+  margin-bottom: 16px;
+  min-height: 84px;
 
   @keyframes body-fade-in {
     0% {
@@ -84,29 +84,22 @@ const STYLES_BODY = css`
     }
   }
   animation: body-fade-in 500ms ease-in-out;
+
+  @media (max-width: ${Constants.sizes.mobile}px) {
+    font-size: 17px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+  }
 `;
 
 const STYLES_JUMPER = css`
-  @keyframes jumper-fade-in {
-    0% {
-      opacity: 0%;
-      transform: translateY(5%);
-    }
-    50% {
-      opacity: 0%;
-      transform: translateY(5%);
-    }
-    100% {
-      opacity: 100%;
-      transform: translateY(0%);
-    }
+  @media (max-width: ${Constants.sizes.mobile}px) {
+    display: none;
   }
-  animation: jumper-fade-in 700ms ease-in-out;
 `;
 
 const STYLES_FLEX = css`
-  position: absolute;
-  bottom: 48px;
+  margin-top: 48px;
   width: 100%;
   max-width: 700px;
   display: flex;
@@ -114,7 +107,7 @@ const STYLES_FLEX = css`
   justify-content: center;
 
   @media (max-width: ${Constants.sizes.tablet}px) {
-    bottom: 96px;
+    max-width: 100%;
   }
 `;
 
@@ -135,6 +128,62 @@ const STYLES_BUTTON = css`
   :hover {
     background-color: ${Constants.semantic.textGray};
     color: ${Constants.semantic.textWhite};
+  }
+`;
+
+const STYLES_IMGGUIDE = css`
+  display: block;
+  height: 498px;
+  border-radius: 8px;
+  margin-left: -190px;
+
+  @keyframes jumper-fade-in {
+    0% {
+      opacity: 0%;
+      transform: translateY(5%);
+    }
+    50% {
+      opacity: 0%;
+      transform: translateY(5%);
+    }
+    100% {
+      opacity: 100%;
+      transform: translateY(0%);
+    }
+  }
+  animation: jumper-fade-in 700ms ease-in-out;
+
+  @media (max-width: ${Constants.sizes.mobile}px) {
+    width: 100%;
+    height: auto;
+    margin-left: 0;
+    border-radius: 4px;
+  }
+`;
+
+const STYLES_MOBILEGUIDE = css`
+  display: none;
+
+  @media (max-width: ${Constants.sizes.mobile}px) {
+    display: block;
+    width: 100%;
+    height: auto;
+
+    @keyframes jumper-fade-in {
+      0% {
+        opacity: 0%;
+        transform: translateY(5%);
+      }
+      50% {
+        opacity: 0%;
+        transform: translateY(5%);
+      }
+      100% {
+        opacity: 100%;
+        transform: translateY(0%);
+      }
+    }
+    animation: jumper-fade-in 700ms ease-in-out;
   }
 `;
 
@@ -165,28 +214,38 @@ export const useGuideKeyCommands = (next, prev) => {
   useEventListener({ type: "keyup", handler: handleKeyUp });
 };
 
-export default function Guide(props) {
-  useGuideKeyCommands(props.next, props.prev);
+export default function Guide({
+  title,
+  description,
+  url,
+  image,
+  heading,
+  body,
+  jumper,
+  imageguide,
+  mobileguide,
+  prev,
+  next,
+  ...props
+}) {
+  useGuideKeyCommands(next, prev);
   return (
-    <WebsitePrototypeWrapper
-      title={props.title}
-      description={props.description}
-      url={props.url}
-      image={props.image}
-    >
-      <WebsiteHeader />
+    <WebsitePrototypeWrapper title={title} description={description} url={url} image={image}>
       <div css={STYLES_ROOT}>
+        <WebsiteHeader />
         <div css={STYLES_CONTAINER}>
-          <div css={STYLES_HEADING}>{props.heading}</div>
-          <div css={STYLES_BODY}>{props.body}</div>
-          <div css={STYLES_JUMPER}>{props.jumper}</div>
+          <div css={STYLES_HEADING}>{heading}</div>
+          <div css={STYLES_BODY}>{body}</div>
+          {jumper && <div css={STYLES_JUMPER}>{jumper}</div>}
+          {imageguide && <img css={STYLES_IMGGUIDE} src={imageguide} />}
+          {mobileguide && <img css={STYLES_MOBILEGUIDE} src={mobileguide} />}
           <div css={STYLES_FLEX}>
-            <Link href={props.prev}>
-              <a css={STYLES_BUTTON} style={{ marginRight: `12px` }}>
+            <Link href={prev}>
+              <a css={STYLES_BUTTON} style={{ marginRight: `16px` }}>
                 <SVG.LeftArrow height={16} width={16} />
               </a>
             </Link>
-            <Link href={props.next}>
+            <Link href={next}>
               <a css={STYLES_BUTTON}>
                 <SVG.RightArrow height={16} width={16} />
               </a>
@@ -194,7 +253,6 @@ export default function Guide(props) {
           </div>
         </div>
       </div>
-      <WebsiteFooter />
     </WebsitePrototypeWrapper>
   );
 }
