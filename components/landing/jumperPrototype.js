@@ -14,20 +14,12 @@ const JUMPER_HEIGHT = 432;
  * -----------------------------------------------------------------------------------------------*/
 
 const STYLES_JUMPER_ROOT = (theme) => css`
-  ${Styles.VERTICAL_CONTAINER};
-
-  position: relative;
   width: ${JUMPER_WIDTH}px;
   height: ${JUMPER_HEIGHT}px;
-  z-index: 23423423432;
-
-  border: 1px solid ${theme.semantic.borderGrayLight};
-  box-shadow: ${theme.shadow.darkLarge};
-  //NOTE(amine): when changing border-radius, change it also in STYLES_MARBLE_WRAPPER and STYLES_APP_MODAL_BACKGROUND
+  background-color: ${theme.semantic.bgBlurLight6};
   border-radius: 16px;
+  //NOTE(amine): when changing border-radius, change it also in STYLES_MARBLE_WRAPPER and STYLES_APP_MODAL_BACKGROUND
   overflow: hidden;
-
-  background-color: ${theme.semantic.white};
   @supports ((-webkit-backdrop-filter: blur(75px)) or (backdrop-filter: blur(75px))) {
     -webkit-backdrop-filter: blur(75px);
     backdrop-filter: blur(75px);
@@ -35,10 +27,35 @@ const STYLES_JUMPER_ROOT = (theme) => css`
   }
 `;
 
+const STYLES_JUMPER_ROOT_WRAPPER = (theme) => css`
+  ${Styles.VERTICAL_CONTAINER};
+  ${STYLES_JUMPER_ROOT}
+  -moz-box-shadow: ${theme.shadow.lightMedium};
+  -webkit-box-shadow: ${theme.shadow.lightMedium};
+  @supports ((-webkit-backdrop-filter: blur(75px)) or (backdrop-filter: blur(75px))) {
+    background-image: url("../public/static/bg-jumper.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  border: 1px solid ${theme.semantic.borderGrayLight};
+  border-radius: 16px;
+  //NOTE(amine): when changing border-radius, change it also in STYLES_MARBLE_WRAPPER and STYLES_APP_MODAL_BACKGROUND
+  overflow: hidden;
+  width: ${JUMPER_WIDTH}px;
+  height: ${JUMPER_HEIGHT}px;
+  position: relative;
+  z-index: 23423423432;
+`;
+
+const STYLES_IMG = css`
+  height: 16px;
+`;
+
 function Root({ children, ...props }) {
   return (
-    <div css={STYLES_JUMPER_ROOT} {...props}>
-      {children}
+    <div css={STYLES_JUMPER_ROOT_WRAPPER} {...props}>
+      <div css={STYLES_JUMPER_ROOT}>{children}</div>
     </div>
   );
 }
@@ -49,16 +66,23 @@ function Root({ children, ...props }) {
 
 const STYLES_JUMPER_HEADER = css`
   ${Styles.HORIZONTAL_CONTAINER_CENTERED};
-  padding: 12px 16px;
+  padding: 12px 20px;
 `;
 
 function Header({ ...props }) {
+  const slate = "../public/static/Slate_volumetric.png";
   return (
     <div css={STYLES_JUMPER_HEADER} {...props}>
-      <SVG.Link width={20} height={20} />
-      <System.H3 color="textGrayLight" style={{ marginLeft: 12, marginTop: 3, marginBottom: 1 }}>
-        Search by keywords or #tags
-      </System.H3>
+      <img css={STYLES_IMG} src={slate} alt="Slate volumetric logo" />
+      {!!props.search ? (
+        <System.H3 color="textBlack" style={{ marginLeft: 12, marginTop: 3, marginBottom: 1 }}>
+          {props.search}
+        </System.H3>
+      ) : (
+        <System.H3 color="textGrayLight" style={{ marginLeft: 12, marginTop: 3, marginBottom: 1 }}>
+          Search by keywords or #tags
+        </System.H3>
+      )}
     </div>
   );
 }
@@ -68,7 +92,7 @@ function Header({ ...props }) {
  * -----------------------------------------------------------------------------------------------*/
 
 const STYLES_JUMPER_BODY = css`
-  padding: 12px 8px;
+  padding: 8px;
   overflow: hidden;
 `;
 
@@ -106,17 +130,48 @@ const STYLES_COLOR_SYSTEM_GREEN = (theme) => css`
   color: ${theme.system.green};
 `;
 
-function Object({ title, isSelected, isSaved, Favicon, ...props }) {
+const STYLES_TAG = (theme) => css`
+  box-sizing: border-box;
+  background: ${theme.semantic.bgWhite};
+  border: 1px solid ${theme.semantic.borderGrayLight};
+  box-shadow: 0px 4px 16px rgba(174, 176, 178, 0.1);
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 20px;
+  padding: 2px 8px;
+  color: ${theme.semantic.textBlack};
+  font-family: ${theme.font.medium};
+  margin-left: 8px;
+`;
+
+function Object({ title, isSelected, isSaved, Favicon, tag, ...props }) {
   return (
     <div css={[STYLES_JUMPER_OBJECT, isSelected && STYLES_JUMPER_OBJECT_IS_SELECTED]} {...props}>
-      {isSelected ? <div css={STYLES_JUMPER_OBJECT_CHECKBOX} /> : <Favicon />}
-      <System.H5
-        color="textBlack"
-        nbrOflines={1}
-        style={{ marginLeft: 12, marginTop: 3, marginBottom: 1, maxWidth: 438 }}
-      >
-        {title}
-      </System.H5>
+      {isSelected ? (
+        <div css={STYLES_JUMPER_OBJECT_CHECKBOX} />
+      ) : (
+        <Favicon style={{ height: 16, width: 16 }} />
+      )}
+      {!!tag ? (
+        <React.Fragment>
+          <div css={STYLES_TAG}>{tag}</div>
+          <System.H5
+            color="textBlack"
+            nbrOflines={1}
+            style={{ marginLeft: 4, marginTop: 3, marginBottom: 1, maxWidth: 280 }}
+          >
+            {title}
+          </System.H5>
+        </React.Fragment>
+      ) : (
+        <System.H5
+          color="textBlack"
+          nbrOflines={1}
+          style={{ marginLeft: 12, marginTop: 3, marginBottom: 1, maxWidth: 438 }}
+        >
+          {title}
+        </System.H5>
+      )}
       <div css={Styles.HORIZONTAL_CONTAINER} style={{ marginLeft: "auto" }}>
         {isSelected ? (
           <>
@@ -139,7 +194,7 @@ function Object({ title, isSelected, isSaved, Favicon, ...props }) {
 
         {isSaved ? (
           <div style={{ margin: 2, marginLeft: 8 }}>
-            <SVG.CheckCircle css={STYLES_COLOR_SYSTEM_GREEN} width={16} />{" "}
+            <SVG.Saved css={STYLES_COLOR_SYSTEM_GREEN} width={16} />{" "}
           </div>
         ) : null}
       </div>
@@ -153,22 +208,40 @@ function Object({ title, isSelected, isSaved, Favicon, ...props }) {
 
 const STYLES_JUMPER_TOP_PANEL = (theme) => css`
   ${Styles.HORIZONTAL_CONTAINER};
-  width: ${JUMPER_WIDTH}px;
+  background-color: ${theme.semantic.bgBlurLight6};
   padding: 8px;
   border-radius: 16px;
-  background-color: white;
-  border: 1px solid ${theme.semantic.borderGrayLight};
-  box-shadow: ${theme.shadow.darkLarge};
+  overflow: hidden;
 
   @supports ((-webkit-backdrop-filter: blur(75px)) or (backdrop-filter: blur(75px))) {
     -webkit-backdrop-filter: blur(75px);
     backdrop-filter: blur(75px);
-    background-color: ${theme.semantic.bgBlurWhite};
+    background-color: ${theme.semantic.bgBlurLight6};
   }
 `;
 
-const TopPanel = ({ children }) => {
-  return <div css={STYLES_JUMPER_TOP_PANEL}>{children}</div>;
+const STYLES_JUMPER_TOP_PANEL_WRAPPER = (theme) => css`
+  ${STYLES_JUMPER_TOP_PANEL}
+  -moz-box-shadow:: ${theme.shadow.lightMedium};
+  -webkit-box-shadow: ${theme.shadow.lightMedium};
+  @supports ((-webkit-backdrop-filter: blur(75px)) or (backdrop-filter: blur(75px))) {
+    background-image: url("../public/static/bg-space-switcher.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  border: 1px solid ${theme.semantic.borderGrayLight};
+  width: ${JUMPER_WIDTH}px;
+  border-radius: 16px;
+  overflow: hidden;
+`;
+
+const TopPanel = ({ children, ...props }) => {
+  return (
+    <div css={STYLES_JUMPER_TOP_PANEL_WRAPPER} {...props}>
+      <div css={STYLES_JUMPER_TOP_PANEL}>{children}</div>
+    </div>
+  );
 };
 
 /* -------------------------------------------------------------------------------------------------

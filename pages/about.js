@@ -15,23 +15,25 @@ import { css } from "@emotion/react";
 const STYLES_ROOT = css`
   width: 100%;
   height: 100%;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 52px;
-  overflow: hidden;
-  height: calc(100vh - 113px);
+  min-height: calc(100vh - 61px);
   background-color: ${Constants.semantic.bgLight};
   color: ${Constants.semantic.textBlack};
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: ${Constants.sizes.mobile}px) {
+    min-height: calc(100vh - 112px);
+  }
 `;
 
 const STYLES_CONTAINER = css`
   max-width: 700px;
   margin: 0 auto;
-  padding: 80px 0;
+  padding: 24px 0 96px 0;
 
   @media (max-width: ${Constants.sizes.mobile}px) {
     max-width: 480px;
-    padding: 96px 16px;
+    padding: 16px 16px 32px 16px;
   }
 `;
 
@@ -101,8 +103,8 @@ export default function AboutUsPage() {
 
   return (
     <WebsitePrototypeWrapper title={title} description={description} url={url} image={image}>
-      <WebsiteHeader />
       <div css={STYLES_ROOT}>
+        <WebsiteHeader />
         <div css={STYLES_CONTAINER}>
           <div css={STYLES_HEADING1}>About Us</div>
           <div css={STYLES_BODY}>

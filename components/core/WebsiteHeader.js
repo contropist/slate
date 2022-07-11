@@ -1,7 +1,9 @@
+import * as React from "react";
 import * as Constants from "~/common/constants";
 
+import Link from "next/link";
+
 import { css } from "@emotion/react";
-import { ButtonPrimary, ButtonSecondary } from "~/components/system/components/Buttons";
 
 const STYLES_ROOT = css`
   position: -webkit-sticky;
@@ -10,8 +12,8 @@ const STYLES_ROOT = css`
   width: 100%;
   height: 100%;
   overflow: hidden;
-  z-index: ${Constants.zindex.header};
-  background-color: ${Constants.semantic.bgLight};
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 `;
 
 const STYLES_CONTAINER = css`
@@ -23,30 +25,29 @@ const STYLES_CONTAINER = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font: ${Constants.font.medium};
   color: ${Constants.semantic.textBlack};
   font-size: 14px;
   text-decoration: none;
   line-height: 20px;
   letter-spacing: -0.01px;
-  text-align: left;
   padding: 16px;
 
   @media (max-width: ${Constants.sizes.mobile}px) {
     max-width: 480px;
     padding: 16px;
-    display: flex;
   }
 `;
 
 const STYLES_LOGO = css`
-  flex-shrink: 0;
-  height: 24px;
-  width: 24px;
+  height: 32px;
+  width: 32px;
+  cursor: poitner;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
 `;
 
 const STYLES_BUTTON = css`
-  cursor: poitner;
   display: inline-flex;
   flex-grow: 0;
   justify-content: center;
@@ -54,22 +55,18 @@ const STYLES_BUTTON = css`
   box-shadow: ${Constants.shadow.lightSmall};
   text-decoration: none;
   font-family: ${Constants.font.medium};
-  font-size: 14px;
+  font-size: 13px;
   line-height: 20px;
   letter-spacing: -0.006px;
   cursor: pointer;
 `;
 
-const STYLES_BUTTON_PRIMARY = css`
-  ${STYLES_BUTTON};
-  color: ${Constants.semantic.textWhite};
-  background-color: ${Constants.system.blue};
-`;
-
 const STYLES_BUTTON_PRIMARY_SMALL = css`
-  ${STYLES_BUTTON_PRIMARY};
-  padding: 1px 12px 3px;
-  border-radius: 8px;
+  ${STYLES_BUTTON};
+  padding: 5px 16px 7px;
+  border-radius: 12px;
+  background-color: ${Constants.system.lime};
+  color: ${Constants.semantic.textWhite};
 `;
 
 const STYLES_IMG = css`
@@ -82,16 +79,14 @@ const WebsiteHeader = (props) => {
   return (
     <div css={STYLES_ROOT}>
       <div css={STYLES_CONTAINER} style={props.style}>
-        <div css={STYLES_LOGO}>
-          <a href="../">
+        <Link href="../">
+          <a css={STYLES_LOGO}>
             <img css={STYLES_IMG} src={slate} alt="Slate volumetric logo" />
           </a>
-        </div>
-        <div>
-          <a css={STYLES_BUTTON_PRIMARY_SMALL} href="../_/auth">
-            Install Slate for Chrome
-          </a>
-        </div>
+        </Link>
+        <Link href="../_/auth">
+          <a css={STYLES_BUTTON_PRIMARY_SMALL}>Get started</a>
+        </Link>
       </div>
     </div>
   );

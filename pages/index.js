@@ -12,29 +12,43 @@ import { useGuideKeyCommands } from "./guide/guide";
 const STYLES_ROOT = css`
   width: 100%;
   height: 100%;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 52px;
-  overflow: hidden;
-  height: calc(100vh - 113px);
+  min-height: calc(100vh - 61px);
   background-color: ${Constants.semantic.bgLight};
   color: ${Constants.semantic.textBlack};
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: ${Constants.sizes.mobile}px) {
+    min-height: calc(100vh - 112px);
+  }
 `;
 
 const STYLES_CONTAINER = css`
   max-width: 700px;
   margin: 0 auto;
-  padding: 40px 0;
+  padding: 24px 0 96px 0;
 
   @media (max-width: ${Constants.sizes.mobile}px) {
     max-width: 480px;
-    padding: 96px 16px;
+    padding: 16px 16px 32px 16px;
   }
 `;
 
 const STYLES_IMG = css`
   width: 100%;
   margin-bottom: 40px;
+
+  @keyframes hero-fade-in {
+    0% {
+      opacity: 0%;
+      transform: translateY(5%);
+    }
+    100% {
+      opacity: 100%;
+      transform: translateY(0%);
+    }
+  }
+  animation: hero-fade-in 300ms ease-in-out;
 `;
 
 const STYLES_HEADING = css`
@@ -59,35 +73,77 @@ const STYLES_HEADING = css`
     line-height: 52px;
     letter-spacing: -0.04em;
   }
+
+  @keyframes heading-fade-in {
+    0% {
+      opacity: 0%;
+      transform: translateY(25%);
+    }
+    50% {
+      opacity: 0%;
+      transform: translateY(25%);
+    }
+    100% {
+      opacity: 100%;
+      transform: translateY(0%);
+    }
+  }
+  animation: heading-fade-in 400ms ease-in-out;
 `;
 
 const STYLES_BODY = css`
-  font-family: ${Constants.font.text};
+  font-family: ${Constants.font.medium};
   font-size: 20px;
   line-height: 28px;
-  letter-spacing: -0.01em;
-  margin-bottom: 40px;
+  letter-spacing: -0.015em;
+  margin-bottom: 32px;
+
+  @keyframes body-fade-in {
+    0% {
+      opacity: 0%;
+      transform: translateY(50%);
+    }
+    50% {
+      opacity: 0%;
+      transform: translateY(50%);
+    }
+    100% {
+      opacity: 100%;
+      transform: translateY(0%);
+    }
+  }
+  animation: body-fade-in 600ms ease-in-out;
+
+  @media (max-width: ${Constants.sizes.mobile}px) {
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: -0.01em;
+  }
 `;
 
 const STYLES_CURSOR_BLINK = css`
   display: inline-block;
   background-color: ${Constants.semantic.textGray};
   width: 32px;
-  height: 61px;
+  height: 64px;
   margin-left: 6px;
   overflow: visible;
-  animation: blink-animation 1s steps(5, start) infinite;
-  -webkit-animation: blink-animation 1s steps(5, start) infinite;
+
   @keyframes blink-animation {
     to {
       visibility: hidden;
     }
   }
+
   @-webkit-keyframes blink-animation {
     to {
       visibility: hidden;
     }
   }
+
+  animation: blink-animation 1s steps(5, start) infinite;
+  -webkit-animation: blink-animation 1s steps(5, start) infinite;
+
   @media (max-width: ${Constants.sizes.tablet}px) {
     width: 28.5px;
     height: 47px;
@@ -96,22 +152,6 @@ const STYLES_CURSOR_BLINK = css`
   @media (max-width: ${Constants.sizes.mobile}px) {
     width: 21px;
     height: 35px;
-    margin-left: 2px;
-  }
-`;
-
-const STYLES_CURSOR_BLINK_SMALL = css`
-  ${STYLES_CURSOR_BLINK}
-  width: 25px;
-  height: 41px;
-  @media (max-width: ${Constants.sizes.tablet}px) {
-    width: 21px;
-    height: 35px;
-    margin-left: 2px;
-  }
-  @media (max-width: ${Constants.sizes.mobile}px) {
-    width: 17.5px;
-    height: 29px;
     margin-left: 2px;
   }
 `;
@@ -127,6 +167,7 @@ const STYLES_BUTTON = css`
   font-family: ${Constants.font.medium};
   font-size: 18px;
   line-height: 20px;
+  letter-spacing: -0.015em;
   text-decoration: none;
   cursor: pointer;
   border: 2px solid ${Constants.semantic.borderGray};
@@ -135,6 +176,29 @@ const STYLES_BUTTON = css`
   :hover {
     background-color: ${Constants.semantic.textGray};
     color: ${Constants.semantic.textWhite};
+  }
+
+  @keyframes button-fade-in {
+    0% {
+      opacity: 0%;
+      transform: translateY(50%);
+    }
+    50% {
+      opacity: 0%;
+      transform: translateY(50%);
+    }
+    100% {
+      opacity: 100%;
+      transform: translateY(0%);
+    }
+  }
+  animation: button-fade-in 700ms ease-in-out;
+
+  @media (max-width: ${Constants.sizes.mobile}px) {
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    padding: 14px 20px;
   }
 `;
 
@@ -149,21 +213,21 @@ export default function IndexPage() {
 
   return (
     <WebsitePrototypeWrapper title={title} description={description} url={url} image={image}>
-      <WebsiteHeader />
       <div css={STYLES_ROOT}>
+        <WebsiteHeader />
         <div css={STYLES_CONTAINER}>
           <img css={STYLES_IMG} src="../public/static/browser-tabs.png" />
           <div css={STYLES_HEADING}>
-            Search your internet memory
+            Save, organize, <br />
+            search
             <span css={STYLES_CURSOR_BLINK} />
           </div>
           <div css={STYLES_BODY}>
-            Slate is a Chrome extension that helps you save, organize and search stuff you care
-            about on the web. It’s a lightweight tool designed to make the internet feel a little
-            more personal.
+            Slate is a personal storage space that helps you keep track and come back to things you
+            care about on the web.
           </div>
           <a css={STYLES_BUTTON} href={next}>
-            Get Started <SVG.RightArrow height={20} width={20} style={{ marginLeft: 8 }} />
+            Get started <SVG.RightArrow height={20} width={20} style={{ marginLeft: 8 }} />
           </a>
         </div>
       </div>

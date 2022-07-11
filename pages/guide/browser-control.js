@@ -7,58 +7,40 @@ import Guide from "~/pages/guide/guide.js";
 
 import { css } from "@emotion/react";
 
-const VIEWS_ACTIONS = [
-  { label: "Current Window" },
-  { label: "All Open Tabs" },
-  { label: "Recent" },
-];
-
-const CUSTOM_VIEWS_ACTIONS = [
-  { label: "Twitter", Favicon: SVG.TwitterFavicon },
-  { label: "Youtube", Favicon: SVG.YoutubeFavicon },
-];
+const VIEWS_ACTIONS = [{ label: "Current Window" }, { label: "All Open" }, { label: "Recent" }];
 
 const OBJECTS = [
   {
     title: "Concrete Architecture (@architeg) / Twitter",
     Favicon: SVG.TwitterFavicon,
-    isSaved: true,
   },
   {
-    title: "Paul Prudence on Twitter: Computers and Automation [August-12-2022]",
-    isSelected: true,
-    Favicon: SVG.TwitterFavicon,
+    title: "Fitzcarraldo 1982 Werner Herzog Klaus Kinski Full Movie HD",
+    Favicon: SVG.YoutubeFavicon,
   },
   {
-    title: "Concrete Architecture (@architeg) / Twitter",
-    Favicon: SVG.TwitterFavicon,
+    title: "Amazon.com: Whole Foods Market",
+    Favicon: SVG.AmazonFavicon,
   },
   {
-    title: "Concrete Architecture (@architeg) / Twitter",
-    Favicon: SVG.TwitterFavicon,
-    isSaved: true,
+    title: "NASA Is Working With Startups to Harvest the Moon’s Resources",
+    Favicon: SVG.WSJFavicon,
   },
   {
-    title: "Concrete Architecture (@architeg) / Twitter",
-    Favicon: SVG.TwitterFavicon,
-    isSaved: true,
+    title: "SyntheticEvent - React",
+    Favicon: SVG.ReactFavicon,
   },
   {
-    title: "Concrete Architecture (@architeg) / Twitter",
-    Favicon: SVG.TwitterFavicon,
+    title: "slate-engineering/slate-web-extension at @aminejv/history",
+    Favicon: SVG.GithubFavicon,
   },
   {
-    title: "Concrete Architecture (@architeg) / Twitter",
-    Favicon: SVG.TwitterFavicon,
+    title: "Verticle ⋅ Mount Kimbie",
+    Favicon: SVG.SpotifyFavicon,
   },
   {
-    title: "Concrete Architecture (@architeg) / Twitter",
-    Favicon: SVG.TwitterFavicon,
-  },
-  {
-    title: "Concrete Architecture (@architeg) / Twitter",
-    Favicon: SVG.TwitterFavicon,
-    isSaved: true,
+    title: "tokyo travel restrictions 2022 - Google Search",
+    Favicon: SVG.GoogleFavicon,
   },
 ];
 
@@ -69,35 +51,21 @@ export default function BrowserControlGuidePage() {
       description="Your personal search engine"
       url="https://slate.host/guide/browser-control"
       image="https://slate.textile.io/ipfs/bafkreifww37ypduoi5pvj2cuikz7iycp7l5h7czke6lcboukkaqkoab3t4"
-      heading="Organize your internet browsing"
-      body="It connects with your browser so you can easily see recent sites, all your open tabs, and everything in your current window at a glance."
+      heading="Built for your browser"
+      body="Our Chrome extension gives you seamless control of your tabs with powerful tools to help you manage and keep track of things."
       next="save"
       prev="../"
       jumper={
-        <div>
+        <React.Fragment>
           <JumperPrototype.TopPanel>
-            {VIEWS_ACTIONS.map((action) => (
-              <JumperPrototype.ViewAction key={action.label}>
-                {action.label}
-              </JumperPrototype.ViewAction>
-            ))}
-            <JumperPrototype.Divider
-              height="none"
-              width="1px"
-              style={{ margin: "0px 4px", flexShrink: 0 }}
-            />
-            {CUSTOM_VIEWS_ACTIONS.map((action, i) => (
-              <JumperPrototype.ViewAction
-                isSelected={i === 0}
-                key={action.label}
-                Favicon={action.Favicon}
-              >
+            {VIEWS_ACTIONS.map((action, i) => (
+              <JumperPrototype.ViewAction isSelected={i === 0} key={action.label}>
                 {action.label}
               </JumperPrototype.ViewAction>
             ))}
             <JumperPrototype.ViewAddButton style={{ marginLeft: "auto" }} />
           </JumperPrototype.TopPanel>
-          <JumperPrototype.Root style={{ marginTop: 16 }}>
+          <JumperPrototype.Root style={{ marginTop: 16, boxShadow: "none", opacity: 0.5 }}>
             <JumperPrototype.Header />
             <JumperPrototype.Divider />
             <JumperPrototype.Body>
@@ -112,8 +80,9 @@ export default function BrowserControlGuidePage() {
               ))}
             </JumperPrototype.Body>
           </JumperPrototype.Root>
-        </div>
+        </React.Fragment>
       }
+      mobileguide="../public/static/browser-control.png"
     />
   );
 }
