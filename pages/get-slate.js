@@ -26,7 +26,7 @@ const STYLES_ROOT = css`
 const STYLES_CONTAINER = css`
   max-width: 700px;
   margin: 0 auto;
-  padding: 24px 0 96px 0;
+  padding: min(2.5vw, 120px) 0 24px 0;
 
   @media (max-width: ${Constants.sizes.mobile}px) {
     max-width: 480px;
@@ -35,8 +35,8 @@ const STYLES_CONTAINER = css`
 `;
 
 const STYLES_IMG = css`
-  width: 100%;
-  margin-bottom: 40px;
+  width: 88%;
+  margin-bottom: 8px;
 
   @keyframes hero-fade-in {
     0% {
@@ -57,10 +57,10 @@ const STYLES_HEADING = css`
   flex-shrink: 0;
   min-width: 50%;
   max-width: 100%;
-  font-size: 88px;
-  line-height: 88px;
+  line-height: min(100px, 6vw);
+  font-size: min(100px, 6vw);
   letter-spacing: -0.05em;
-  margin-bottom: 25px;
+  margin-bottom: 21px;
 
   @media (max-width: ${Constants.sizes.tablet}px) {
     font-size: 64px;
@@ -97,7 +97,7 @@ const STYLES_BODY = css`
   font-size: 20px;
   line-height: 28px;
   letter-spacing: -0.015em;
-  margin-bottom: 32px;
+  margin-bottom: 20px;
 
   @keyframes body-fade-in {
     0% {

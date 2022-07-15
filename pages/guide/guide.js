@@ -4,6 +4,7 @@ import * as SVG from "~/common/svg";
 
 import WebsitePrototypeWrapper from "~/components/core/WebsitePrototypeWrapper";
 import WebsiteHeader from "~/components/core/WebsiteHeader";
+import { useRouter } from 'next/router'
 import Link from "next/link";
 
 import { css } from "@emotion/react";
@@ -23,7 +24,7 @@ const STYLES_ROOT = css`
 const STYLES_CONTAINER = css`
   max-width: 700px;
   margin: 0 auto;
-  padding: 80px 0;
+  padding-top: min(2.6vw, 200px);
 
   @media (max-width: ${Constants.sizes.mobile}px) {
     max-width: 480px;
@@ -37,8 +38,8 @@ const STYLES_HEADING = css`
   flex-shrink: 0;
   min-width: 50%;
   max-width: 100%;
-  font-size: 40px;
-  line-height: 40px;
+  line-height: min(30px, 3vw);
+  font-size: min(36px, 3.6vw);
   letter-spacing: -0.035em;
   margin-bottom: 20px;
 
@@ -51,14 +52,14 @@ const STYLES_HEADING = css`
   @keyframes heading-fade-in {
     0% {
       opacity: 0%;
-      transform: translateY(30%);
+      transform: translateY(50%);
     }
     100% {
       opacity: 100%;
       transform: translateY(0%);
     }
   }
-  animation: heading-fade-in 300ms ease-in-out;
+  animation: heading-fade-in 200ms ease-in-out;
 `;
 
 const STYLES_BODY = css`
@@ -66,24 +67,24 @@ const STYLES_BODY = css`
   font-size: 18px;
   line-height: 28px;
   letter-spacing: -0.015em;
-  margin-bottom: 16px;
   min-height: 84px;
+  margin-bottom: min(0.3vw, 80px);
 
   @keyframes body-fade-in {
     0% {
       opacity: 0%;
-      transform: translateY(30%);
+      transform: translateY(10%);
     }
     50% {
       opacity: 0%;
-      transform: translateY(30%);
+      transform: translateY(10%);
     }
     100% {
       opacity: 100%;
       transform: translateY(0%);
     }
   }
-  animation: body-fade-in 500ms ease-in-out;
+  animation: body-fade-in 350ms ease-in-out;
 
   @media (max-width: ${Constants.sizes.mobile}px) {
     font-size: 17px;
@@ -93,13 +94,25 @@ const STYLES_BODY = css`
 `;
 
 const STYLES_JUMPER = css`
+@keyframes jumper-fade-in {
+  0% {
+    opacity: 95%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+animation: jumper-fade-in 200ms ease-in-out;
+
+}
+
   @media (max-width: ${Constants.sizes.mobile}px) {
     display: none;
   }
 `;
 
 const STYLES_FLEX = css`
-  margin-top: 48px;
+  margin-top: min(1.5vw, 80px);
   width: 100%;
   max-width: 700px;
   display: flex;
@@ -168,6 +181,7 @@ const STYLES_MOBILEGUIDE = css`
     display: block;
     width: 100%;
     height: auto;
+    margin: 20px 0 64px 0;
 
     @keyframes jumper-fade-in {
       0% {
@@ -188,6 +202,7 @@ const STYLES_MOBILEGUIDE = css`
 `;
 
 export const useGuideKeyCommands = (next, prev) => {
+  const router = useRouter();
   const handleKeyUp = (e) => {
     const input = document.querySelectorAll("input");
     for (let elem of input) {
@@ -204,10 +219,10 @@ export const useGuideKeyCommands = (next, prev) => {
 
     switch (e.key) {
       case "ArrowRight":
-        if (next) window.location.replace(next);
+        if (next) router.replace(next);
         break;
       case "ArrowLeft":
-        if (prev) window.location.replace(prev);
+        if (prev) router.replace(prev);
         break;
     }
   };
