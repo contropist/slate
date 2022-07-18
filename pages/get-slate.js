@@ -165,8 +165,8 @@ const STYLES_BUTTON = css`
 
 const STYLES_PRIMARY_BUTTON = css`
   ${STYLES_BUTTON}
-  background-color: ${Constants.system.lime};
-  color: ${Constants.semantic.textWhite};
+  background-color: ${Constants.system.highlighter};
+  color: ${Constants.semantic.textBlack};
 `;
 
 const STYLES_SECONDARY_BUTTON = css`

@@ -14,7 +14,7 @@ const STYLES_ROOT = css`
   width: 100%;
   height: 100%;
   min-height: 100vh;
-  background-color: ${Constants.semantic.bgLight};
+  background-color: ${Constants.semantic.bgGrayLight};
   color: ${Constants.semantic.textBlack};
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -94,17 +94,17 @@ const STYLES_BODY = css`
 `;
 
 const STYLES_JUMPER = css`
-@keyframes jumper-fade-in {
-  0% {
-    opacity: 95%;
+  @keyframes jumper-fade-in {
+    0% {
+      opacity: 95%;
+    }
+    100% {
+      opacity: 100%;
+    }
   }
-  100% {
-    opacity: 100%;
-  }
-}
-animation: jumper-fade-in 200ms ease-in-out;
+  animation: jumper-fade-in 200ms ease-in-out;
 
-}
+  }
 
   @media (max-width: ${Constants.sizes.mobile}px) {
     display: none;
@@ -150,7 +150,7 @@ const STYLES_IMGGUIDE = css`
   border-radius: 8px;
   margin-left: -190px;
 
-  @keyframes jumper-fade-in {
+  @keyframes guide-fade-in {
     0% {
       opacity: 0%;
       transform: translateY(5%);
@@ -164,7 +164,7 @@ const STYLES_IMGGUIDE = css`
       transform: translateY(0%);
     }
   }
-  animation: jumper-fade-in 700ms ease-in-out;
+  animation: guide-fade-in 500ms ease-in-out;
 
   @media (max-width: ${Constants.sizes.mobile}px) {
     width: 100%;
@@ -183,7 +183,7 @@ const STYLES_MOBILEGUIDE = css`
     height: auto;
     margin: 20px 0 64px 0;
 
-    @keyframes jumper-fade-in {
+    @keyframes mobile-fade-in {
       0% {
         opacity: 0%;
         transform: translateY(5%);
@@ -197,7 +197,7 @@ const STYLES_MOBILEGUIDE = css`
         transform: translateY(0%);
       }
     }
-    animation: jumper-fade-in 700ms ease-in-out;
+    animation: mobile-fade-in 700ms ease-in-out;
   }
 `;
 

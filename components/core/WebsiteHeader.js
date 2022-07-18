@@ -65,8 +65,8 @@ const STYLES_BUTTON_PRIMARY_SMALL = css`
   ${STYLES_BUTTON};
   padding: 5px 16px 7px;
   border-radius: 12px;
-  background-color: ${Constants.system.lime};
-  color: ${Constants.semantic.textWhite};
+  background-color: ${Constants.system.highlighter};
+  color: ${Constants.semantic.textBlack};
 `;
 
 const STYLES_IMG = css`

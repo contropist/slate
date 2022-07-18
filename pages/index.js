@@ -13,7 +13,7 @@ const STYLES_ROOT = css`
   width: 100%;
   height: 100%;
   min-height: calc(100vh - 61px);
-  background-color: ${Constants.semantic.bgLight};
+  background-color: ${Constants.semantic.bgGrayLight};
   color: ${Constants.semantic.textBlack};
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
