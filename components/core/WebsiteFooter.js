@@ -7,7 +7,7 @@ import { css } from "@emotion/react";
 const STYLES_ROOT = css`
   width: 100%;
   margin: 0 auto;
-  background-color: ${Constants.semantic.bgLight};
+  background-color: ${Constants.semantic.bgGrayLight};
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 `;

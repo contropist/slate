@@ -46,6 +46,7 @@ export const system = {
   lime: "hsl(76, 61.7%, 45.1%)",
   grass: "hsl(131, 41.0%, 46.5%)",
   mint: "hsl(168, 52.8%, 51.0%)",
+  highlighter: "#E2FF59",
 
   // .mint {
   //   --mint1: hsl(165, 80.0%, 98.8%);

@@ -13,7 +13,7 @@ const STYLES_ROOT = css`
   width: 100%;
   height: 100%;
   min-height: calc(100vh - 61px);
-  background-color: ${Constants.semantic.bgLight};
+  background-color: ${Constants.semantic.bgGrayLight};
   color: ${Constants.semantic.textBlack};
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -26,7 +26,7 @@ const STYLES_ROOT = css`
 const STYLES_CONTAINER = css`
   max-width: 700px;
   margin: 0 auto;
-  padding: 24px 0 96px 0;
+  padding: min(0.2vw, 120px) 0 40px 0;
 
   @media (max-width: ${Constants.sizes.mobile}px) {
     max-width: 480px;
@@ -35,8 +35,8 @@ const STYLES_CONTAINER = css`
 `;
 
 const STYLES_IMG = css`
-  width: 100%;
-  margin-bottom: 40px;
+  width: 92%;
+  margin-bottom: 24px;
 
   @keyframes hero-fade-in {
     0% {
@@ -57,20 +57,20 @@ const STYLES_HEADING = css`
   flex-shrink: 0;
   min-width: 50%;
   max-width: 100%;
-  font-size: 88px;
-  line-height: 88px;
+  line-height: min(100px, 6vw);
+  font-size: min(120px, 6vw);
   letter-spacing: -0.05em;
-  margin-bottom: 25px;
+  margin-bottom: 21px;
 
   @media (max-width: ${Constants.sizes.tablet}px) {
-    font-size: 64px;
-    line-height: 68px;
+    font-size: 60px;
+    line-height: 60px;
     letter-spacing: -0.04em;
   }
 
   @media (max-width: ${Constants.sizes.mobile}px) {
     font-size: 48px;
-    line-height: 52px;
+    line-height: 48px;
     letter-spacing: -0.04em;
   }
 
@@ -96,7 +96,7 @@ const STYLES_BODY = css`
   font-size: 20px;
   line-height: 28px;
   letter-spacing: -0.015em;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 
   @keyframes body-fade-in {
     0% {
@@ -124,8 +124,8 @@ const STYLES_BODY = css`
 const STYLES_CURSOR_BLINK = css`
   display: inline-block;
   background-color: ${Constants.semantic.textGray};
-  width: 32px;
-  height: 64px;
+  width: min(50px, 2.6vw);
+  height: min(88px, 4.5vw);
   margin-left: 6px;
   overflow: visible;
 
@@ -145,12 +145,12 @@ const STYLES_CURSOR_BLINK = css`
   -webkit-animation: blink-animation 1s steps(5, start) infinite;
 
   @media (max-width: ${Constants.sizes.tablet}px) {
-    width: 28.5px;
-    height: 47px;
+    width: 25px;
+    height: 44px;
     margin-left: 4px;
   }
   @media (max-width: ${Constants.sizes.mobile}px) {
-    width: 21px;
+    width: 20px;
     height: 35px;
     margin-left: 2px;
   }
