@@ -215,6 +215,17 @@ const createSurveysTable = createTableIfNotExists("surveys", function (table) {
   table.string("referralOther").defaultTo(null);
 });
 
+const createViewsTable = createTableIfNotExists("views", function (table) {
+  table.uuid("id").primary().unique().notNullable().defaultTo(db.raw("uuid_generate_v4()"));
+  table.uuid("ownerId").references("id").inTable("users");
+
+  table.string("name").notNullable();
+  table.timestamp("createdAt").notNullable().defaultTo(db.raw("now()"));
+  table.string("filterBySource").unique().nullable();
+  table.uuid("filterBySlateId").references("id").inTable("slates").unique().nullable();
+  table.jsonb("metadata").notNullable().defaultTo(JSON.stringify({}));
+});
+
 // --------------------------
 // RUN
 // --------------------------
@@ -235,6 +246,7 @@ Promise.all([
   createUsageTable,
   createTwitterTokensTable,
   createSurveysTable,
+  createViewsTable,
 ]);
 
 Logging.log(`FINISHED: seed-database.js`);
