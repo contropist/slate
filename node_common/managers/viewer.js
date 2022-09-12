@@ -152,9 +152,10 @@ export const getById = async ({ id }) => {
 
   // user.library = await Data.getFilesByUserId({ id });
 
-  const [slates, keys, subscriptions, following, followers] = (
+  const [slates, views, keys, subscriptions, following, followers] = (
     await Promise.allSettled([
       Data.getSlatesByUserId({ ownerId: id, includeFiles: true }),
+      Data.getViewsByUserId({ ownerId: id }),
       Data.getAPIKeysByUserId({ userId: id }),
       Data.getSubscriptionsByUserId({ ownerId: id }),
       Data.getFollowingByUserId({ ownerId: id }),
@@ -224,6 +225,7 @@ export const getById = async ({ id }) => {
     // userBucketCID: bucketRoot?.path || null,
     keys,
     slates,
+    views,
     subscriptions,
     following,
     followers,

@@ -107,6 +107,13 @@ import createDeal from "~/node_common/data/methods/create-deal";
 // Surveys
 import createSurvey from "~/node_common/data/methods/create-survey";
 
+// NOTE(amine)
+// Views
+import getViewById from "~/node_common/data/methods/get-view-by-id";
+import getViewsByUserId from "~/node_common/data/methods/get-views-by-user-id";
+import createView from "~/node_common/data/methods/create-view";
+import deleViewById from "~/node_common/data/methods/delete-view-by-id";
+
 export {
   // NOTE(jim): One-offs
   createOrphan,
@@ -191,4 +198,9 @@ export {
   createDeal,
   //NOTE(amine): Surveys
   createSurvey,
+  //NOTE(amine): Views
+  getViewsByUserId,
+  getViewById,
+  createView,
+  deleViewById,
 };
