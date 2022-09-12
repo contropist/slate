@@ -18,6 +18,13 @@ export default async (req, res) => {
     return res.status(403).send({ decorator: "SERVER_CREATE_VIEW_INVALID_DATA", error: true });
   }
 
+  if (filterBySlateId) {
+    const slate = await Data.getSlateById({ id: filterBySlateId });
+    if (!slate) {
+      return res.status(403).send({ decorator: "SERVER_CREATE_VIEW_INVALID_DATA", error: true });
+    }
+  }
+
   const userInfo = await RequestUtilities.checkAuthorizationInternal(req, res);
   if (!userInfo) return;
 
