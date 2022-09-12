@@ -261,4 +261,10 @@ export const error = {
   UPLOAD_NOT_ENOUGH_SPACE_REMAINS: "You do not have enough storage remaining to upload that file",
   UPLOAD_FAILURE: "We were unable to upload some of your files",
   UPLOAD_VERIFY_FAILURE: "We were unable to verify that some of your files were uploaded",
+
+  // VIEWS
+  SERVER_CREATE_VIEW_NOT_ALLOWED: "You can only create a space while on slate.host",
+  SERVER_CREATE_VIEW_FAILED: "We ran into issues while creating your space. Please try again",
+  SERVER_DELETE_VIEW_NOT_ALLOWED: "You are not the owner of those files",
+  SERVER_DELETE_VIEW_FAILED: "We ran into issues while deleting your space. Please try again",
 };
