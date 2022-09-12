@@ -39,6 +39,8 @@ export default async ({ id }) => {
 
       const usage = await DB.from("usage").where({ userId: id }).del();
 
+      const views = await DB.from("views").where({ ownerId: id }).del();
+
       const data = await DB.from("users").where({ id }).del().returning("*");
 
       let user = data ? data.pop() : data;

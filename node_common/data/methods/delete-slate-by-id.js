@@ -16,6 +16,8 @@ export default async ({ id }) => {
 
       const activity = await DB("activity").where({ slateId: id }).del();
 
+      const views = await DB("views").where({ filterBySlateId: id }).del();
+
       const data = await DB("slates").where({ id }).del().returning("*");
 
       let slate = data ? data.pop() : data;
