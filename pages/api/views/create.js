@@ -9,6 +9,11 @@ export default async (req, res) => {
     return res.status(403).send({ decorator: "SERVER_CREATE_VIEW_NOT_ALLOWED", error: true });
   }
 
+  const userInfo = await RequestUtilities.checkAuthorizationInternal(req, res);
+  if (!userInfo) {
+    return res.status(403).send({ decorator: "SERVER_CREATE_VIEW_NOT_ALLOWED", error: true });
+  }
+
   const name = req?.body?.data?.name;
   const filterBySource = req?.body?.data?.filterBySource;
   const filterBySlateId = req?.body?.data?.filterBySlateId;
@@ -18,10 +23,17 @@ export default async (req, res) => {
     return res.status(403).send({ decorator: "SERVER_CREATE_VIEW_INVALID_DATA", error: true });
   }
 
+  const { id } = userInfo;
+
   if (filterBySource) {
     try {
       new URL(filterBySource);
     } catch (e) {
+      return res.status(403).send({ decorator: "SERVER_CREATE_VIEW_INVALID_DATA", error: true });
+    }
+
+    const existingView = await Data.getViewByUserIdAndSource({ ownerId: id, filterBySource });
+    if (existingView) {
       return res.status(403).send({ decorator: "SERVER_CREATE_VIEW_INVALID_DATA", error: true });
     }
   }
@@ -32,11 +44,6 @@ export default async (req, res) => {
       return res.status(403).send({ decorator: "SERVER_CREATE_VIEW_INVALID_DATA", error: true });
     }
   }
-
-  const userInfo = await RequestUtilities.checkAuthorizationInternal(req, res);
-  if (!userInfo) return;
-
-  const { id } = userInfo;
 
   const response = await Data.createView({
     ownerId: id,

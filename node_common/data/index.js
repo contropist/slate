@@ -111,6 +111,7 @@ import createSurvey from "~/node_common/data/methods/create-survey";
 // Views
 import getViewById from "~/node_common/data/methods/get-view-by-id";
 import getViewsByUserId from "~/node_common/data/methods/get-views-by-user-id";
+import getViewByUserIdAndSource from "~/node_common/data/methods/get-view-by-user-id-and-source";
 import createView from "~/node_common/data/methods/create-view";
 import deleViewById from "~/node_common/data/methods/delete-view-by-id";
 
@@ -200,6 +201,7 @@ export {
   createSurvey,
   //NOTE(amine): Views
   getViewsByUserId,
+  getViewByUserIdAndSource,
   getViewById,
   createView,
   deleViewById,

@@ -221,7 +221,7 @@ const createViewsTable = createTableIfNotExists("views", function (table) {
 
   table.string("name").notNullable();
   table.timestamp("createdAt").notNullable().defaultTo(db.raw("now()"));
-  table.string("filterBySource").unique().nullable();
+  table.string("filterBySource").nullable();
   table.uuid("filterBySlateId").references("id").inTable("slates").unique().nullable();
   table.jsonb("metadata").notNullable().defaultTo(JSON.stringify({}));
 });
