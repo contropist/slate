@@ -124,6 +124,14 @@ const addIsFilterSidebarCollapsedToUsersTable = db.schema.table("users", functio
   table.boolean("isFilterSidebarCollapsed").defaultTo(false);
 });
 
+const addExtensionColumnsToUsersTable = db.schema.table("users", function (table) {
+  table.boolean("isRecentViewActivated").defaultTo(false);
+  table.boolean("isFilesViewActivated").defaultTo(false);
+  table.boolean("hasCompletedExtensionOBFirstStep").defaultTo(false);
+  table.boolean("hasCompletedExtensionOBSecondStep").defaultTo(false);
+  table.boolean("hasCompletedExtensionOBThirdStep").defaultTo(false);
+});
+
 // Promise.all([
 //   dropOnboardingTable,
 //   createSurveysTable,
@@ -132,7 +140,7 @@ const addIsFilterSidebarCollapsedToUsersTable = db.schema.table("users", functio
 //   addIsFilterSidebarCollapsedToUsersTable,
 // ]);
 
-Promise.all([dropOnboardingColumn]);
+Promise.all([addExtensionColumnsToUsersTable]);
 
 Logging.log(`FINISHED: adjust.js`);
 Logging.log(`          CTRL +C to return to terminal.`);
