@@ -20,6 +20,7 @@ export const sizes = {
 export const system = {
   //system color
   white: "#FFFFFF",
+  gray: "#8E9093",
   grayLight6: "#F7F8F9",
   grayLight5: "#E5E8EA",
   grayLight4: "#D1D1D6",
@@ -214,6 +215,7 @@ export const semantic = {
   bgBlurDark6OP: "rgba(28, 29, 30, 0.85)",
   bgBlurDark6TRN: "rgba(28, 29, 30, 0.3)",
 
+  borderGray: system.gray,
   borderLight: system.grayLight6,
   borderGrayLight: system.grayLight5,
   borderDark: system.grayDark6,
