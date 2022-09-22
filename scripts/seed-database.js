@@ -52,10 +52,18 @@ const createUsersTable = createTableIfNotExists("users", function (table) {
   table.integer("followerCount").notNullable().defaultTo(0);
   table.integer("slateCount").notNullable().defaultTo(0);
   table.integer("authVersion").notNullable().defaultTo(2);
+
   table.boolean("hasCompletedSurvey").defaultTo(false);
   table.boolean("hasCompletedUploadOnboarding").defaultTo(false);
   table.boolean("hasCompletedSlatesOnboarding").defaultTo(false);
   table.boolean("isFilterSidebarCollapsed").defaultTo(false);
+
+  table.boolean("isRecentViewActivated").defaultTo(false);
+  table.boolean("isFilesViewActivated").defaultTo(false);
+  table.boolean("isBookmarkSyncActivated").defaultTo(false);
+  table.boolean("hasCompletedExtensionOBFirstStep").defaultTo(false);
+  table.boolean("hasCompletedExtensionOBSecondStep").defaultTo(false);
+  table.boolean("hasCompletedExtensionOBThirdStep").defaultTo(false);
 });
 
 const createSlatesTable = createTableIfNotExists("slates", function (table) {

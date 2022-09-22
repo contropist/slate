@@ -125,11 +125,7 @@ const addIsFilterSidebarCollapsedToUsersTable = db.schema.table("users", functio
 });
 
 const addExtensionColumnsToUsersTable = db.schema.table("users", function (table) {
-  table.boolean("isRecentViewActivated").defaultTo(false);
-  table.boolean("isFilesViewActivated").defaultTo(false);
-  table.boolean("hasCompletedExtensionOBFirstStep").defaultTo(false);
-  table.boolean("hasCompletedExtensionOBSecondStep").defaultTo(false);
-  table.boolean("hasCompletedExtensionOBThirdStep").defaultTo(false);
+  table.boolean("isBookmarkSyncActivated").defaultTo(false);
 });
 
 // Promise.all([
