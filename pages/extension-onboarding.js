@@ -3,6 +3,8 @@ import * as System from "~/components/system";
 import * as Styles from "~/common/styles";
 import * as SVG from "~/common/svg";
 
+import WebsitePrototypeWrapper from "~/components/core/WebsitePrototypeWrapper";
+
 import { css } from "@emotion/react";
 
 const STYLES_SAVING_SHORTCUT_ICON = (theme) => css`
@@ -26,7 +28,7 @@ function JumperKeyboardShortcut(props) {
         css={STYLES_SAVING_SHORTCUT_ICON}
         style={{ marginLeft: 4 }}
       >
-        .
+        J
       </System.H4>
     </div>
   );
@@ -94,29 +96,31 @@ const STYLES_ARROW_UP_RIGHT = css`
 
 export default function ExtensionOnboarding() {
   return (
-    <div css={STYLES_WRAPPER}>
-      <section css={STYLES_JUMPER_CONTAINER}>
-        <div
-          css={Styles.VERTICAL_CONTAINER_CENTERED}
-          style={{ position: "relative", height: "100%", width: "100%" }}
-        >
-          <div css={STYLES_JUMPER_TOP_BAR} />
-          <System.H4 color="textBlack" style={{ marginTop: 130 }}>
-            Press keyboard shortcut
-          </System.H4>
-          <JumperKeyboardShortcut style={{ marginTop: 10 }} />
+    <WebsitePrototypeWrapper title="Extension Onboarding - Slate">
+      <div css={STYLES_WRAPPER}>
+        <section css={STYLES_JUMPER_CONTAINER}>
+          <div
+            css={Styles.VERTICAL_CONTAINER_CENTERED}
+            style={{ position: "relative", height: "100%", width: "100%" }}
+          >
+            <div css={STYLES_JUMPER_TOP_BAR} />
+            <System.H4 color="textBlack" style={{ marginTop: 130 }}>
+              Press keyboard shortcut
+            </System.H4>
+            <JumperKeyboardShortcut style={{ marginTop: 10 }} />
 
-          <System.Divider width="80px" height="1px" style={{ marginTop: 24, marginBottom: 24 }} />
+            <System.Divider width="80px" height="1px" style={{ marginTop: 24, marginBottom: 24 }} />
 
-          <System.H4 color="textBlack">
-            Click on extension icon on the top right
-            <SVG.ArrowUpRight height={16} width={16} css={STYLES_ARROW_UP_RIGHT} />
-          </System.H4>
-          <div css={STYLES_SLATE_LOGO_WRAPPER} style={{ marginTop: 8 }}>
-            <Logo />
+            <System.H4 color="textBlack">
+              Click on extension icon on the top right
+              <SVG.ArrowUpRight height={16} width={16} css={STYLES_ARROW_UP_RIGHT} />
+            </System.H4>
+            <div css={STYLES_SLATE_LOGO_WRAPPER} style={{ marginTop: 8 }}>
+              <Logo />
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </WebsitePrototypeWrapper>
   );
 }
