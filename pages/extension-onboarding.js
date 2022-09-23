@@ -29,7 +29,7 @@ function JumperKeyboardShortcut(props) {
         css={STYLES_SAVING_SHORTCUT_ICON}
         style={{ marginLeft: 4 }}
       >
-        {isUsingMac() ? "J" : "."}
+        .
       </System.H4>
     </div>
   );
