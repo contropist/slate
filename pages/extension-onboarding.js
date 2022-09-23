@@ -6,10 +6,11 @@ import * as SVG from "~/common/svg";
 import WebsitePrototypeWrapper from "~/components/core/WebsitePrototypeWrapper";
 
 import { css } from "@emotion/react";
+import { isUsingMac } from "~/common/utilities";
 
 const STYLES_SAVING_SHORTCUT_ICON = (theme) => css`
   padding: 8px;
-  width: 32px;
+  min-width: 32px;
   line-height: 16px;
   text-align: center;
   background-color: ${theme.semantic.bgGrayLight};
@@ -20,7 +21,7 @@ function JumperKeyboardShortcut(props) {
   return (
     <div css={Styles.HORIZONTAL_CONTAINER_CENTERED} {...props}>
       <System.H4 as="p" color="textBlack" css={STYLES_SAVING_SHORTCUT_ICON}>
-        ⌘
+        {isUsingMac() ? "⌘" : "Ctrl"}
       </System.H4>
       <System.H4
         as="p"
@@ -28,7 +29,7 @@ function JumperKeyboardShortcut(props) {
         css={STYLES_SAVING_SHORTCUT_ICON}
         style={{ marginLeft: 4 }}
       >
-        J
+        {isUsingMac() ? "J" : "."}
       </System.H4>
     </div>
   );
