@@ -63,5 +63,5 @@ export default async (req, res) => {
 
   await ViewerManager.hydratePartial(id, { viewer: true });
 
-  return res.status(200).send({ decorator: "SERVER_CREATE_VIEW_SUCCESS" });
+  return res.status(200).send({ decorator: "SERVER_CREATE_VIEW_SUCCESS", data: response });
 };
