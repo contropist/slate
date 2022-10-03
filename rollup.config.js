@@ -36,7 +36,4 @@ const generateOutput = (outputPath) => {
   };
 };
 
-export default [
-  generateOutput("dist/index.js"),
-  generateOutput("../slate-react-system/src/index.js"),
-];
+export default [generateOutput("dist/index.js")];
