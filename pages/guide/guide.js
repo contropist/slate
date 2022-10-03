@@ -254,15 +254,7 @@ export default function Guide({
           <h1 css={STYLES_HEADING}>{heading}</h1>
           <p css={STYLES_BODY}>{body}</p>
           {jumper && <div css={STYLES_JUMPER}>{jumper}</div>}
-          {imageguide && (
-            <img
-              css={STYLES_IMGGUIDE}
-              src={imageguide}
-              width="343"
-              height="158"
-              alt="extension jumper"
-            />
-          )}
+          {imageguide && <img css={STYLES_IMGGUIDE} src={imageguide} alt="extension jumper" />}
 
           {mobileguide && (
             <img
