@@ -23,7 +23,6 @@ const REJECT_LIST = [
   "_next",
   "next",
   "webpack",
-  "system",
   "experience",
   "root",
   "www",
@@ -79,6 +78,8 @@ export const userRoute = (text) => {
 
   return true;
 };
+
+export const isAppRoute = (pathname) => /\/_\/.*/.test(pathname);
 
 export const slatename = (text) => {
   if (Strings.isEmpty(text)) {

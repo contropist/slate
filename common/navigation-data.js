@@ -1,5 +1,6 @@
 import * as Strings from "~/common/strings";
 import * as Environment from "~/common/environment";
+import * as Validations from "~/common/validations";
 
 export const getById = (id, viewer) => {
   let target;
@@ -36,6 +37,10 @@ export const getByHref = (href, viewer) => {
   }
 
   let page = navigation.find((each) => pathname.startsWith(each.pathname));
+
+  if (Validations.isAppRoute(pathname) && !page) {
+    return { page: { ...errorPage } };
+  }
 
   let details;
   if (page) {
