@@ -18,7 +18,7 @@ const STYLES_ROOT = css`
   color: ${Constants.semantic.textBlack};
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: hidden;
+  padding-bottom: 80px;
 `;
 
 const STYLES_CONTAINER = css`
@@ -222,10 +222,10 @@ export const useGuideKeyCommands = (next, prev) => {
 
     switch (e.key) {
       case "ArrowRight":
-        if (next) router.replace(next);
+        if (next) router.push(next, undefined, { scroll: false });
         break;
       case "ArrowLeft":
-        if (prev) router.replace(prev);
+        if (prev) router.push(prev, undefined, { scroll: false });
         break;
     }
   };
@@ -266,12 +266,12 @@ export default function Guide({
             />
           )}
           <div css={STYLES_FLEX}>
-            <Link href={prev}>
+            <Link href={prev} scroll={false}>
               <a css={STYLES_BUTTON} style={{ marginRight: `16px` }}>
                 <SVG.LeftArrow height={16} width={16} />
               </a>
             </Link>
-            <Link href={next}>
+            <Link href={next} scroll={false}>
               <a css={STYLES_BUTTON}>
                 <SVG.RightArrow height={16} width={16} />
               </a>
