@@ -4,7 +4,7 @@ import * as SVG from "~/common/svg";
 
 import WebsitePrototypeWrapper from "~/components/core/WebsitePrototypeWrapper";
 import WebsiteHeader from "~/components/core/WebsiteHeader";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 import Link from "next/link";
 
 import { css } from "@emotion/react";
@@ -104,8 +104,6 @@ const STYLES_JUMPER = css`
   }
   animation: jumper-fade-in 200ms ease-in-out;
 
-  }
-
   @media (max-width: ${Constants.sizes.mobile}px) {
     display: none;
   }
@@ -142,6 +140,11 @@ const STYLES_BUTTON = css`
     background-color: ${Constants.semantic.textGray};
     color: ${Constants.semantic.textWhite};
   }
+
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 `;
 
 const STYLES_IMGGUIDE = css`
@@ -241,7 +244,6 @@ export default function Guide({
   mobileguide,
   prev,
   next,
-  ...props
 }) {
   useGuideKeyCommands(next, prev);
   return (
@@ -249,11 +251,28 @@ export default function Guide({
       <div css={STYLES_ROOT}>
         <WebsiteHeader />
         <div css={STYLES_CONTAINER}>
-          <div css={STYLES_HEADING}>{heading}</div>
-          <div css={STYLES_BODY}>{body}</div>
+          <h1 css={STYLES_HEADING}>{heading}</h1>
+          <p css={STYLES_BODY}>{body}</p>
           {jumper && <div css={STYLES_JUMPER}>{jumper}</div>}
-          {imageguide && <img css={STYLES_IMGGUIDE} src={imageguide} />}
-          {mobileguide && <img css={STYLES_MOBILEGUIDE} src={mobileguide} />}
+          {imageguide && (
+            <img
+              css={STYLES_IMGGUIDE}
+              src={imageguide}
+              width="343"
+              height="158"
+              alt="extension jumper"
+            />
+          )}
+
+          {mobileguide && (
+            <img
+              css={STYLES_MOBILEGUIDE}
+              src={mobileguide}
+              width="343"
+              height="241"
+              alt="extension jumper"
+            />
+          )}
           <div css={STYLES_FLEX}>
             <Link href={prev}>
               <a css={STYLES_BUTTON} style={{ marginRight: `16px` }}>

@@ -1,11 +1,8 @@
 import * as React from "react";
-import * as Constants from "~/common/constants";
 import * as SVG from "~/common/svg";
 import * as JumperPrototype from "~/components/landing/jumperPrototype";
 
 import Guide from "~/pages/guide/guide.js";
-
-import { css } from "@emotion/react";
 
 const VIEWS_ACTIONS = [{ label: "Current Window" }, { label: "All Open" }, { label: "Recent" }];
 

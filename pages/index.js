@@ -5,6 +5,7 @@ import * as SVG from "~/common/svg";
 import WebsitePrototypeWrapper from "~/components/core/WebsitePrototypeWrapper";
 import WebsiteHeader from "~/components/core/WebsiteHeader";
 import WebsiteFooter from "~/components/core/WebsiteFooter";
+import Link from "next/link";
 
 import { css } from "@emotion/react";
 import { useGuideKeyCommands } from "./guide/guide";
@@ -36,6 +37,7 @@ const STYLES_CONTAINER = css`
 
 const STYLES_IMG = css`
   width: 92%;
+  height: auto;
   margin-bottom: 24px;
 
   @keyframes hero-fade-in {
@@ -209,6 +211,7 @@ export default function IndexPage() {
   const image =
     "https://slate.textile.io/ipfs/bafkreifww37ypduoi5pvj2cuikz7iycp7l5h7czke6lcboukkaqkoab3t4";
   const next = "../guide/browser-control";
+
   useGuideKeyCommands(next);
 
   return (
@@ -216,19 +219,29 @@ export default function IndexPage() {
       <div css={STYLES_ROOT}>
         <WebsiteHeader />
         <div css={STYLES_CONTAINER}>
-          <img css={STYLES_IMG} src="../public/static/browser-tabs.png" />
-          <div css={STYLES_HEADING}>
+          <div style={{ width: "100%" }}>
+            <img
+              css={STYLES_IMG}
+              width="644"
+              height="290.72"
+              src="../public/static/browser-tabs.png"
+              alt="a list of windows"
+            />
+          </div>
+          <h1 css={STYLES_HEADING}>
             Save, organize, <br />
             search
             <span css={STYLES_CURSOR_BLINK} />
-          </div>
-          <div css={STYLES_BODY}>
+          </h1>
+          <p css={STYLES_BODY}>
             Slate is a personal storage space that helps you keep track and come back to things you
             care about on the web.
-          </div>
-          <a css={STYLES_BUTTON} href={next}>
-            Get started <SVG.RightArrow height={20} width={20} style={{ marginLeft: 8 }} />
-          </a>
+          </p>
+          <Link href={next}>
+            <a css={STYLES_BUTTON}>
+              Get started <SVG.RightArrow height={20} width={20} style={{ marginLeft: 8 }} />
+            </a>
+          </Link>
         </div>
       </div>
       <WebsiteFooter />

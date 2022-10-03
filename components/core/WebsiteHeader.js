@@ -84,9 +84,9 @@ const WebsiteHeader = (props) => {
             <img css={STYLES_IMG} src={slate} alt="Slate volumetric logo" />
           </a>
         </Link>
-        <Link href="../_/auth">
-          <a css={STYLES_BUTTON_PRIMARY_SMALL}>Get started</a>
-        </Link>
+        <a href="/_/data" css={STYLES_BUTTON_PRIMARY_SMALL}>
+          Get started
+        </a>
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import * as SVG from "~/common/svg";
 import WebsitePrototypeWrapper from "~/components/core/WebsitePrototypeWrapper";
 import WebsiteHeader from "~/components/core/WebsiteHeader";
 import WebsiteFooter from "~/components/core/WebsiteFooter";
+import Link from "next/link";
 
 import { css } from "@emotion/react";
 import { useGuideKeyCommands } from "./guide/guide";
@@ -36,7 +37,12 @@ const STYLES_CONTAINER = css`
 
 const STYLES_IMG = css`
   width: 88%;
+  height: auto;
   margin-bottom: 8px;
+
+  @media (max-width: ${Constants.sizes.mobile}px) {
+    width: 100%;
+  }
 
   @keyframes hero-fade-in {
     0% {
@@ -182,8 +188,9 @@ export default function InstallPage() {
   const url = "https://slate.host/get-slate";
   const image =
     "https://slate.textile.io/ipfs/bafkreifww37ypduoi5pvj2cuikz7iycp7l5h7czke6lcboukkaqkoab3t4";
-  const next = "/_/auth";
+  const next = "/_/data";
   const prev = "../guide/new-tab";
+
   useGuideKeyCommands(next, prev);
 
   return (
@@ -191,18 +198,31 @@ export default function InstallPage() {
       <div css={STYLES_ROOT}>
         <WebsiteHeader />
         <div css={STYLES_CONTAINER}>
-          <img css={STYLES_IMG} src="../public/static/slate-jumper.png" />
-          <div css={STYLES_HEADING}>
+          <div style={{ width: "100%" }}>
+            <img
+              css={STYLES_IMG}
+              src="../public/static/slate-jumper.png"
+              alt="extension jumper"
+              width="616"
+              height="278"
+            />
+          </div>
+          <h1 css={STYLES_HEADING}>
             Get started — <br />
             it’s free.
-          </div>
-          <div css={STYLES_BODY}>
+          </h1>
+          <p css={STYLES_BODY}>
             Slate is currently free to use, we’ll add premium features later on for you to use.
-          </div>
-          <a css={STYLES_PRIMARY_BUTTON} href="/_/auth">
+          </p>
+          <a href="/_/data" css={STYLES_PRIMARY_BUTTON}>
             Get started <SVG.RightArrow height={20} width={20} style={{ marginLeft: 8 }} />
           </a>
-          <a css={STYLES_SECONDARY_BUTTON} href="../get-started">
+          <a
+            css={STYLES_SECONDARY_BUTTON}
+            target="_blank"
+            rel="noreferrer"
+            href={Constants.extensionLink.chrome}
+          >
             Get Slate from Chrome store
           </a>
         </div>
