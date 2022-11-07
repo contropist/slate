@@ -76,7 +76,7 @@ export function createUploadProvider({
           if (!response || response.error) throw new Error(response);
 
           const isDuplicate = response.data?.duplicate;
-          const fileCid = response.data?.links[0];
+          const fileCid = response.data?.links[0].cid;
 
           UploadStore.uploadedFiles[fileKey] = true;
           if (isDuplicate) {

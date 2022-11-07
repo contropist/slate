@@ -146,6 +146,6 @@ export default async (req, res) => {
 
   return res.status(200).send({
     decorator,
-    data: { added, links: filteredFiles.map((file) => file.cid), skipped: files.length - added },
+    data: { added, links: createdFiles, skipped: files.length - added },
   });
 };
