@@ -58,9 +58,9 @@ const createUsersTable = createTableIfNotExists("users", function (table) {
   table.boolean("hasCompletedSlatesOnboarding").defaultTo(false);
   table.boolean("isFilterSidebarCollapsed").defaultTo(false);
 
-  table.boolean("isRecentViewActivated").defaultTo(false);
   table.boolean("isFilesViewActivated").defaultTo(false);
-  table.boolean("isBookmarkSyncActivated").defaultTo(false);
+  table.boolean("isRecentViewActivated").defaultTo(true);
+  table.boolean("isBookmarkSyncActivated").defaultTo(true);
   table.boolean("hasCompletedExtensionOBFirstStep").defaultTo(false);
   table.boolean("hasCompletedExtensionOBSecondStep").defaultTo(false);
   table.boolean("hasCompletedExtensionOBThirdStep").defaultTo(false);
