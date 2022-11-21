@@ -241,7 +241,7 @@ export default function ObjectPreviewPrimitive({
 
           <div css={STYLES_PREVIEW}>{children}</div>
 
-          <motion.article css={STYLES_DESCRIPTION}>
+          <motion.article css={STYLES_DESCRIPTION} style={{ marginTop: "auto" }}>
             <div style={{ position: "relative", paddingTop: 9 }}>
               <H5 as="h2" nbrOflines={1} style={{ visibility: "hidden" }}>
                 {title?.slice(0, 5)}
