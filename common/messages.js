@@ -251,8 +251,6 @@ export const error = {
   UPLOAD_WRITE_TO_DISK_ERROR: "We ran into an error while trying to save that file to disk",
   UPLOAD_PUSH_PATH_ERROR:
     "We ran into an error while trying to push that file path to our storage provider",
-  UPLOAD_TEXTILE_RESPONSE_MISSING_DATA:
-    "We didn't receive the file information back from our storage provider, please try uploading again later",
   UPLOAD_READABLE_STREAM_ERROR:
     "We ran into an issue while piping the file to our storage provider",
   UPLOAD_SIZE_TOO_LARGE: "Upload size too large. Please try again with smaller files",
