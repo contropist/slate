@@ -61,7 +61,7 @@ export const saveCopy = async ({ file, uploadAbort }) => {
   return await Actions.saveCopy({ files: [file] }, { signal: abortController.signal });
 };
 
-export const upload = async ({ file, onProgress, bucketName, uploadAbort }) => {
+export const upload = async ({ file, onProgress, uploadAbort }) => {
   let formData = new FormData();
   const HEIC2ANY = require("heic2any");
 
@@ -144,8 +144,6 @@ export const upload = async ({ file, onProgress, bucketName, uploadAbort }) => {
   let res;
   if (isZipFile && isUnityFile) {
     res = await _privateUploadMethod(`${zipUploadRoute}${file.name}`, file);
-  } else if (bucketName && bucketName === Constants.textile.dealsBucket) {
-    res = await _privateUploadMethod(`${storageDealRoute}${file.name}`, file);
   } else {
     res = await _privateUploadMethod(`${generalRoute}${file.name}`, file);
   }
