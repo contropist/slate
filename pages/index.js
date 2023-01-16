@@ -208,8 +208,7 @@ export default function IndexPage() {
   const title = `Slate`;
   const description = "Your personal search engine";
   const url = "https://slate.host/";
-  const image =
-    "https://slate.textile.io/ipfs/bafkreifww37ypduoi5pvj2cuikz7iycp7l5h7czke6lcboukkaqkoab3t4";
+  const image = `${Constants.gateways.ipfs}/bafkreifww37ypduoi5pvj2cuikz7iycp7l5h7czke6lcboukkaqkoab3t4`;
   const next = "../guide/browser-control";
 
   useGuideKeyCommands(next);

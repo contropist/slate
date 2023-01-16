@@ -59,7 +59,7 @@ export default function SaveGuidePage() {
       title="Save Guide - Slate"
       description="Your personal search engine"
       url="https://slate.host/guide/save"
-      image="https://slate.textile.io/ipfs/bafkreifww37ypduoi5pvj2cuikz7iycp7l5h7czke6lcboukkaqkoab3t4"
+      image={`${Constants.gateways.ipfs}/bafkreifww37ypduoi5pvj2cuikz7iycp7l5h7czke6lcboukkaqkoab3t4`}
       heading="Always at your fingertips"
       body="Save links, take notes, and add tags with keyboard shortcuts to capture things on the fly."
       next="file"

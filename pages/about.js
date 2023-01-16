@@ -98,8 +98,7 @@ export default function AboutUsPage() {
   const title = `About Us - Slate`;
   const description = "Your personal search engine";
   const url = "https://slate.host/about";
-  const image =
-    "https://slate.textile.io/ipfs/bafkreifww37ypduoi5pvj2cuikz7iycp7l5h7czke6lcboukkaqkoab3t4";
+  const image = `${Constants.gateways.ipfs}/bafkreifww37ypduoi5pvj2cuikz7iycp7l5h7czke6lcboukkaqkoab3t4`;
 
   return (
     <WebsitePrototypeWrapper title={title} description={description} url={url} image={image}>

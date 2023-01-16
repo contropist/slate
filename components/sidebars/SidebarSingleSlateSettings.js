@@ -12,9 +12,6 @@ import { RadioGroup } from "~/components/system/components/RadioGroup";
 import { css } from "@emotion/react";
 import { ConfirmationModal } from "~/components/core/ConfirmationModal";
 
-const DEFAULT_IMAGE =
-  "https://slate.textile.io/ipfs/bafkreiaow45dlq5xaydaeqocdxvffudibrzh2c6qandpqkb6t3ahbvh6re";
-
 const STYLES_HEADER = css`
   font-family: ${Constants.font.semiBold};
 `;

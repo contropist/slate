@@ -12,8 +12,7 @@ import WebsitePrototypeHeader from "~/components/core/WebsitePrototypeHeader";
 import WebsitePrototypeFooter from "~/components/core/WebsitePrototypeFooter";
 import CTATransition from "~/components/core/CTATransition";
 
-const DEFAULT_IMAGE =
-  "https://slate.textile.io/ipfs/bafkreiaow45dlq5xaydaeqocdxvffudibrzh2c6qandpqkb6t3ahbvh6re";
+const DEFAULT_IMAGE = `${Constants.gateways.ipfs}/bafkreiaow45dlq5xaydaeqocdxvffudibrzh2c6qandpqkb6t3ahbvh6re`;
 
 export const getServerSideProps = async (context) => {
   return {

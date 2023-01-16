@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as SVG from "~/common/svg";
 import * as JumperPrototype from "~/components/landing/jumperPrototype";
+import * as Constants from "~/common/constants";
 
 import Guide from "~/pages/guide/guide.js";
 
@@ -65,7 +66,7 @@ export default function SpaceGuidePage() {
       title="Space Guide - Slate"
       description="Your personal search engine"
       url="https://slate.host/guide/space"
-      image="https://slate.textile.io/ipfs/bafkreifww37ypduoi5pvj2cuikz7iycp7l5h7czke6lcboukkaqkoab3t4"
+      image={`${Constants.gateways.ipfs}/bafkreifww37ypduoi5pvj2cuikz7iycp7l5h7czke6lcboukkaqkoab3t4`}
       heading="Make space for everything"
       body="Set up spaces to automatically revisit things from your favorite sites or create your own using tags."
       next="search"

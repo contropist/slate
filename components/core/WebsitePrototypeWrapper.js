@@ -1,11 +1,11 @@
 import * as React from "react";
+import * as Constants from "~/common/constants";
 
 import Head from "next/head";
 
 export default class WebsitePrototypeWrapper extends React.Component {
   static defaultProps = {
-    image:
-      "https://slate.textile.io/ipfs/bafybeihtmqpx2lnlvaerfhq5imi2y3jzuf4jqspmmqbth3ebim4ebc2lqy",
+    image: `${Constants.gateways.ipfs}/bafybeihtmqpx2lnlvaerfhq5imi2y3jzuf4jqspmmqbth3ebim4ebc2lqy`,
     title: "Slate",
     url: "https://slate.host/_",
     description:

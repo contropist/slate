@@ -5,8 +5,6 @@ import * as JumperPrototype from "~/components/landing/jumperPrototype";
 
 import Guide from "~/pages/guide/guide.js";
 
-import { css } from "@emotion/react";
-
 const VIEWS_ACTIONS = [{ label: "Current Window" }, { label: "All Open" }, { label: "Recent" }];
 
 const CUSTOM_VIEWS_ACTIONS = [{ label: "Files" }];
@@ -65,7 +63,7 @@ export default function FileGuidePage() {
       title="File Guide - Slate"
       description="Your personal search engine"
       url="https://slate.host/guide/file"
-      image="https://slate.textile.io/ipfs/bafkreifww37ypduoi5pvj2cuikz7iycp7l5h7czke6lcboukkaqkoab3t4"
+      image={`${Constants.gateways.ipfs}/bafkreifww37ypduoi5pvj2cuikz7iycp7l5h7czke6lcboukkaqkoab3t4`}
       heading="Integrated storage for your files"
       body="Save text, images, and files from the web or upload them directly to Slate to create your personal archive."
       next="space"
@@ -73,7 +71,7 @@ export default function FileGuidePage() {
       jumper={
         <div>
           <JumperPrototype.TopPanel>
-            {VIEWS_ACTIONS.map((action, i) => (
+            {VIEWS_ACTIONS.map((action) => (
               <JumperPrototype.ViewAction key={action.label}>
                 {action.label}
               </JumperPrototype.ViewAction>

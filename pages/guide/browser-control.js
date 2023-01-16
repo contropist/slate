@@ -50,7 +50,7 @@ export default function BrowserControlGuidePage() {
       title="Browser Control Guide - Slate"
       description="Your personal search engine"
       url="https://slate.host/guide/browser-control"
-      image="https://slate.textile.io/ipfs/bafkreifww37ypduoi5pvj2cuikz7iycp7l5h7czke6lcboukkaqkoab3t4"
+      image={`${Constants.gateways.ipfs}/bafkreifww37ypduoi5pvj2cuikz7iycp7l5h7czke6lcboukkaqkoab3t4`}
       heading="Built for your browser"
       body="Our Chrome extension gives you seamless control of your tabs with powerful tools to help you manage and keep track of things."
       next="save"

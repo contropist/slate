@@ -186,8 +186,7 @@ export default function InstallPage() {
   const title = `Install Slate for Chrome - Slate`;
   const description = "Install Slate from Chrome web store";
   const url = "https://slate.host/get-slate";
-  const image =
-    "https://slate.textile.io/ipfs/bafkreifww37ypduoi5pvj2cuikz7iycp7l5h7czke6lcboukkaqkoab3t4";
+  const image = `${Constants.gateways.ipfs}/bafkreifww37ypduoi5pvj2cuikz7iycp7l5h7czke6lcboukkaqkoab3t4`;
   const next = "/_/data";
   const prev = "../guide/new-tab";
 
