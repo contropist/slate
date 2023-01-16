@@ -26,39 +26,6 @@ const TEXTILE_KEY_INFO = {
   secret: Environment.TEXTILE_HUB_SECRET,
 };
 
-export const checkTextile = async () => {
-  try {
-    const response = await fetch("https://slate.textile.io/health", {
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (response.status === 204) {
-      return true;
-    }
-
-    Social.sendTextileSlackMessage({
-      file: "/node_common/utilities.js",
-      user: { username: "UNDEFINED" },
-      message: "https://slate.textile.io/health is down",
-      code: "N/A",
-      functionName: `checkTextile`,
-    });
-  } catch (e) {
-    Social.sendTextileSlackMessage({
-      file: "/node_common/utilities.js",
-      user: { username: "UNDEFINED" },
-      message: e.message,
-      code: e.code,
-      functionName: `checkTextile`,
-    });
-  }
-
-  return false;
-};
-
 export const getIdFromCookieValue = (token) => {
   if (!Strings.isEmpty(token)) {
     try {
@@ -117,41 +84,6 @@ export const parseAuthHeader = (value) => {
   return matches && { scheme: matches[1], value: matches[2] };
 };
 
-export const getFilecoinAPIFromUserToken = async ({ user }) => {
-  const { textileKey } = user;
-  const identity = await PrivateKey.fromString(textileKey);
-  const filecoin = await Filecoin.withKeyInfo(TEXTILE_KEY_INFO);
-  await filecoin.getToken(identity);
-
-  Logging.log(`filecoin init`);
-
-  return {
-    filecoin,
-  };
-};
-
-export const setupWithThread = async ({ buckets }) => {
-  const client = new Client(buckets.context);
-
-  try {
-    const res = await client.getThread("buckets");
-
-    buckets.withThread(res.id.toString());
-  } catch (error) {
-    if (error.message !== "Thread not found") {
-      throw new Error(error.message);
-    }
-
-    const newId = ThreadID.fromRandom();
-    await client.newDB(newId, "buckets");
-    const threadID = newId.toString();
-
-    buckets.withThread(threadID);
-  }
-
-  return buckets;
-};
-
 export const addExistingCIDToData = async ({ buckets, key, path, cid }) => {
   try {
     await buckets.setPath(key, path || "/", cid);
@@ -160,51 +92,6 @@ export const addExistingCIDToData = async ({ buckets, key, path, cid }) => {
     return false;
   }
 };
-
-// NOTE(jim): Requires @textile/hub
-// export const getBucketAPIFromUserToken = async ({
-//   user,
-//   bucketName = Constants.textile.mainBucket,
-//   encrypted = false,
-// }) => {
-//   const token = user.textileToken;
-//   const name = bucketName;
-//   const identity = await PrivateKey.fromString(token);
-//   let buckets = await Buckets.withKeyInfo(TEXTILE_KEY_INFO);
-
-//   const textileToken = await buckets.getToken(identity);
-
-//   let root = null;
-//   Logging.log(`buckets.getOrCreate() init ${name}`);
-//   try {
-//     Logging.log("before buckets get or create");
-//     const created = await buckets.getOrCreate(name, { encrypted });
-//     Logging.log("after buckets get or create");
-//     root = created.root;
-//   } catch (e) {
-//     Logging.log(`buckets.getOrCreate() warning: ${e.message}`);
-//     Social.sendTextileSlackMessage({
-//       file: "/node_common/utilities.js",
-//       user,
-//       message: e.message,
-//       code: e.code,
-//       functionName: `buckets.getOrCreate`,
-//     });
-//   }
-
-//   if (!root) {
-//     Logging.error(`buckets.getOrCreate() failed for ${name}`);
-//     return { buckets: null, bucketKey: null, bucketRoot: null };
-//   }
-
-//   Logging.log(`buckets.getOrCreate() success for ${name}`);
-//   return {
-//     buckets,
-//     bucketKey: root.key,
-//     bucketRoot: root,
-//     bucketName: name,
-//   };
-// };
 
 //NOTE(martina): only use this upon creating a new user. This creates their bucket without checking for an existing bucket
 export const createBucket = async ({ bucketName, encrypted = false }) => {
