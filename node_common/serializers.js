@@ -1,31 +1,3 @@
-// //NOTE(martina): clean the object before adding it to the database
-// export const cleanUser = (user) => {
-//   return {
-//     id: user.id,
-//     createdAt: user.createdAt,
-//     lastActive: user.lastActive,
-//     username: user.username,
-//     password: user.password,
-//     salt: user.salt,
-//     email: user.email,
-//     followerCount: user.followerCount,
-//     slateCount: user.slateCount,
-//     twitterId: user.twitterId,
-//     authVersion: user.authVersion,
-//     revertedVersion: user.revertedVersion,
-//     body: user.body,
-//     photo: user.photo,
-//     name: user.name,
-//     twitterUsername: user.twitterUsername,
-//     twitterVerified: user.twitterVerified,
-//     textileKey: user.textileKey,
-//     textileToken: user.textileToken,
-//     textileThreadID: user.textileThreadID,
-//     textileBucketCID: user.textileThreadID,
-//     onboarding: user.onboarding,
-//   };
-// };
-
 //NOTE(martina): add a variable to sanitizeUser if it should be sent to the front end. Otherwise, it will be filtered out
 
 export const sanitizeUser = (user) => {
