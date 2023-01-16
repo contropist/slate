@@ -59,45 +59,6 @@ export const createZipToken = async (files) => {
 export const downloadZip = ({ token, name }) =>
   `${Environment.URI_SHOVEL}/api/download/download-by-token?downloadId=${token}&name=${name}`;
 
-export const health = async (data = {}) => {
-  await Websockets.checkWebsocket();
-  return await returnJSON(`/api/_`, {
-    ...DEFAULT_OPTIONS,
-    body: JSON.stringify({ data: { buckets: data.buckets } }),
-  });
-};
-
-export const sendFilecoin = async (data) => {
-  if (Strings.isEmpty(data.source)) {
-    return null;
-  }
-
-  if (Strings.isEmpty(data.target)) {
-    return null;
-  }
-
-  if (!data.amount) {
-    return null;
-  }
-  await Websockets.checkWebsocket();
-  return await returnJSON(`/api/addresses/send`, {
-    ...DEFAULT_OPTIONS,
-    body: JSON.stringify({ data }),
-  });
-};
-
-// export const mql = async (url) => {
-//   try {
-//     const res = await microlink(url, { screenshot: true });
-//     return res;
-//   } catch (e) {
-//     console.log(e);
-//     if (e.description) {
-//       Events.dispatchMessage({ message: e.description });
-//     }
-//   }
-// };
-
 export const search = async (data) => {
   return await returnJSON(`/api/search/search`, {
     ...DEFAULT_OPTIONS,
@@ -119,14 +80,6 @@ export const checkEmail = async (data) => {
   });
 };
 
-//NOTE(toast): this functionality comes with the upgraded sg plan
-// export const validateEmail = async (data) => {
-//   return await returnJSON("/api/emails/validate", {
-//     ...DEFAULT_OPTIONS,
-//     body: JSON.stringify({ data }),
-//   });
-// };
-
 export const sendEmail = async (data) => {
   return await returnJSON("/api/emails/send-email", {
     ...DEFAULT_OPTIONS,
@@ -136,14 +89,6 @@ export const sendEmail = async (data) => {
 
 export const sendTemplateEmail = async (data) => {
   return await returnJSON("/api/emails/send-template", {
-    ...DEFAULT_OPTIONS,
-    body: JSON.stringify({ data }),
-  });
-};
-
-export const removeFromBucket = async (data) => {
-  await Websockets.checkWebsocket();
-  return await returnJSON(`/api/data/bucket-remove`, {
     ...DEFAULT_OPTIONS,
     body: JSON.stringify({ data }),
   });
