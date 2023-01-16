@@ -2,13 +2,9 @@ import * as Environment from "~/node_common/environment";
 import * as Utilities from "~/node_common/utilities";
 import * as Data from "~/node_common/data";
 import * as Constants from "~/node_common/constants";
-import * as Serializers from "~/node_common/serializers";
-import * as Social from "~/node_common/social";
 import * as Strings from "~/common/strings";
 import * as Window from "~/common/window";
 import * as Websocket from "~/node_common/nodejs-websocket";
-import * as Filecoin from "~/common/filecoin";
-import * as Logging from "~/common/logging";
 
 import WebSocket from "ws";
 
@@ -227,7 +223,6 @@ export const getById = async ({ id }) => {
       pdfBytes,
     },
     // tags,
-    // userBucketCID: bucketRoot?.path || null,
     keys,
     slates,
     views,
@@ -238,163 +233,4 @@ export const getById = async ({ id }) => {
   };
 
   return viewer;
-};
-
-export const getDealHistory = async ({ id }) => {
-  const user = await Data.getUserById({
-    id,
-  });
-
-  if (!user) {
-    return null;
-  }
-
-  if (user.error) {
-    return null;
-  }
-
-  let deals = [];
-
-  try {
-    const FilecoinSingleton = await Utilities.getBucket({ user });
-    const { filecoin } = FilecoinSingleton;
-
-    const records = await filecoin.storageDealRecords({
-      ascending: false,
-      includePending: true,
-      includeFinal: true,
-    });
-
-    for (let i = 0; i < records.length; i++) {
-      const o = records[i];
-
-      deals.push({
-        dealId: o.dealInfo.dealId,
-        rootCid: o.rootCid,
-        proposalCid: o.dealInfo.proposalCid,
-        pieceCid: o.dealInfo.pieceCid,
-        addr: o.address,
-        miner: o.dealInfo.miner,
-        size: o.dealInfo.size,
-        // NOTE(jim): formatted size.
-        formattedSize: Strings.bytesToSize(o.dealInfo.size),
-        pricePerEpoch: o.dealInfo.pricePerEpoch,
-        startEpoch: o.dealInfo.startEpoch,
-        // NOTE(jim): just for point of reference on the total cost.
-        totalSpeculatedCost: Filecoin.formatAsFilecoinConversion(
-          o.dealInfo.pricePerEpoch * o.dealInfo.duration
-        ),
-        duration: o.dealInfo.duration,
-        formattedDuration: Strings.getDaysFromEpoch(o.dealInfo.duration),
-        activationEpoch: o.dealInfo.activationEpoch,
-        time: o.time,
-        createdAt: Strings.toDateSinceEpoch(o.time),
-        pending: o.pending,
-        user: Serializers.sanitizeUser(user),
-      });
-    }
-  } catch (e) {
-    Logging.error(e);
-    Social.sendTextileSlackMessage({
-      file: "/node_common/managers/viewer.js",
-      user,
-      message: e.message,
-      code: e.code,
-      functionName: `filecoin.storageDealRecords`,
-    });
-  }
-
-  return { deals };
-};
-
-export const getTextileById = async ({ id }) => {
-  const user = await Data.getUserById({
-    id,
-  });
-
-  if (!user) {
-    return null;
-  }
-
-  if (user.error) {
-    return null;
-  }
-
-  // NOTE(jim): This bucket is purely for staging data for other deals.
-  const stagingData = await Utilities.getBucket({
-    user,
-    bucketName: Constants.textile.dealsBucket,
-  });
-
-  const FilecoinSingleton = await Utilities.getFilecoinAPIFromUserToken({
-    user,
-  });
-  const { filecoin } = FilecoinSingleton;
-
-  let r = null;
-  try {
-    r = await stagingData.buckets.list();
-  } catch (e) {
-    Social.sendTextileSlackMessage({
-      file: "/node_common/managers/viewer.js",
-      user,
-      message: e.message,
-      code: e.code,
-      functionName: `buckets.list`,
-    });
-  }
-
-  let addresses = null;
-  try {
-    addresses = await filecoin.addresses();
-  } catch (e) {
-    Social.sendTextileSlackMessage({
-      file: "/node_common/managers/viewer.js",
-      user,
-      message: e.message,
-      code: e.code,
-      functionName: `filecoin.addresses`,
-    });
-  }
-
-  let address = null;
-  if (addresses && addresses.length) {
-    address = {
-      name: addresses[0].name,
-      address: addresses[0].address,
-      type: addresses[0].type,
-      // TODO(jim): Serialize BigInt
-      // balance: addresses[0].balance,
-    };
-  }
-
-  let items = null;
-  const dealBucket = r.find((bucket) => bucket.name === Constants.textile.dealsBucket);
-  try {
-    const path = await stagingData.buckets.listPath(dealBucket.key, "/");
-    items = path.item.items;
-  } catch (e) {
-    Social.sendTextileSlackMessage({
-      file: "/node_common/managers/viewer.js",
-      user,
-      message: e.message,
-      code: e.code,
-      functionName: `buckets.listPath`,
-    });
-  }
-
-  const b = await Utilities.getBucket({ user });
-
-  const settings = await b.buckets.defaultArchiveConfig(b.bucketKey);
-
-  return {
-    settings: {
-      ...settings,
-      addr: addresses[0].address,
-      renewEnabled: settings.renew.enabled,
-      renewThreshold: settings.renew.threshold,
-    },
-    address,
-    deal: items ? items.filter((f) => f.name !== ".textileseed") : [],
-  };
 };
