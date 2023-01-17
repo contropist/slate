@@ -78,7 +78,7 @@ export default class APIDocsUploadToSlate extends React.Component {
           style={{ maxWidth: 640 }}
           label="Upload"
           description={
-            "This API endpoint allows you to upload a file to your data. This uses our data transfer microservice to interact with Textile Buckets and upload data to the IPFS/Filecoin network."
+            "This API endpoint allows you to upload a file to your data. This uses our data transfer microservice to interact with Estuary and upload data to the IPFS/Filecoin network."
           }
         />
         <CodeBlock
