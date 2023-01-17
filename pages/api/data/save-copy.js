@@ -1,10 +1,11 @@
 import * as Utilities from "~/node_common/utilities";
 import * as Data from "~/node_common/data";
 import * as ViewerManager from "~/node_common/managers/viewer";
-import SearchManager from "~/node_common/managers/search";
 import * as ArrayUtilities from "~/node_common/array-utilities";
 import * as Monitor from "~/node_common/monitor";
 import * as RequestUtilities from "~/node_common/request-utilities";
+
+import SearchManager from "~/node_common/managers/search";
 
 /**
  * Save copy is equivalent to downloading then reuploading. So an entirely new files table entry should
@@ -16,15 +17,6 @@ export default async (req, res) => {
   const { id, user } = userInfo;
 
   let decorator = "SERVER_SAVE_COPY";
-
-  let { buckets, bucketKey, bucketRoot } = await Utilities.getBucket({ user });
-
-  if (!buckets) {
-    return res.status(500).send({
-      decorator: "SERVER_NO_BUCKET_DATA",
-      error: true,
-    });
-  }
 
   const { files } = req.body.data;
   if (!files?.length) {
@@ -69,16 +61,7 @@ export default async (req, res) => {
     }
 
     const { id, ...rest } = file; //NOTE(martina): remove the old file's id
-    let response = await Utilities.addExistingCIDToData({
-      buckets,
-      key: bucketKey,
-      path: bucketRoot.path,
-      cid: rest.cid,
-    });
-    Data.incrementFileSavecount({ id });
-    if (response && !response.error) {
-      copiedFiles.push(rest);
-    }
+    copiedFiles.push(rest);
   }
 
   let createdFiles = [];
