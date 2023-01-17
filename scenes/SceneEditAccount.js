@@ -296,10 +296,6 @@ export default class SceneEditAccount extends React.Component {
               <div css={STYLES_HEADER} style={{ marginTop: 64 }}>
                 Delete your account
               </div>
-              <div style={{ maxWidth: 800 }}>
-                If you choose to delete your account you will lose your Textile Hub and Powergate
-                key.
-              </div>
 
               <div style={{ marginTop: 24 }}>
                 <System.ButtonWarning
