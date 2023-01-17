@@ -19,13 +19,6 @@ import BCrypt from "bcrypt";
 const ENCRYPTION_ALGORITHM = "aes-256-ctr";
 const ENCRYPTION_IV = crypto.randomBytes(16);
 
-import { Buckets, PrivateKey, Filecoin, Client, ThreadID } from "@textile/hub";
-
-const TEXTILE_KEY_INFO = {
-  key: Environment.TEXTILE_HUB_KEY,
-  secret: Environment.TEXTILE_HUB_SECRET,
-};
-
 export const getIdFromCookieValue = (token) => {
   if (!Strings.isEmpty(token)) {
     try {
@@ -82,103 +75,6 @@ export const parseAuthHeader = (value) => {
 
   var matches = value.match(/(\S+)\s+(\S+)/);
   return matches && { scheme: matches[1], value: matches[2] };
-};
-
-export const addExistingCIDToData = async ({ buckets, key, path, cid }) => {
-  try {
-    await buckets.setPath(key, path || "/", cid);
-    return true;
-  } catch (e) {
-    return false;
-  }
-};
-
-//NOTE(martina): only use this upon creating a new user. This creates their bucket without checking for an existing bucket
-export const createBucket = async ({ bucketName, encrypted = false }) => {
-  bucketName = bucketName || Constants.textile.mainBucket;
-  try {
-    const identity = await PrivateKey.fromRandom();
-    const textileKey = identity.toString();
-
-    let buckets = await Buckets.withKeyInfo(TEXTILE_KEY_INFO);
-
-    const textileToken = await buckets.getToken(identity);
-    buckets.context.withToken(textileToken);
-
-    const client = new Client(buckets.context);
-    const newId = ThreadID.fromRandom();
-    await client.newDB(newId, Constants.textile.threadName);
-    const textileThreadID = newId.toString();
-    buckets.context.withThread(textileThreadID);
-
-    const created = await buckets.create(bucketName, { encrypted });
-    let ipfs = created.root.path;
-    const textileBucketCID = Strings.ipfsToCid(ipfs);
-
-    return {
-      textileKey,
-      textileToken,
-      textileThreadID,
-      textileBucketCID,
-      buckets,
-      bucketKey: created.root.key,
-      bucketRoot: created.root,
-      bucketName,
-    };
-  } catch (e) {
-    Logging.error(e?.message);
-  }
-};
-
-//NOTE(martina): only use this for existing users. This grabs their bucket without checking for an existing bucket
-export const getBucket = async ({ user, bucketName }) => {
-  bucketName = bucketName || Constants.textile.mainBucket;
-  let updateUser = false;
-  let { textileKey, textileToken, textileThreadID, textileBucketCID } = user;
-
-  if (!textileKey) {
-    return await createBucket({ user, bucketName });
-  }
-
-  let buckets = await Buckets.withKeyInfo(TEXTILE_KEY_INFO);
-
-  if (!textileToken) {
-    const identity = PrivateKey.fromString(textileKey);
-    textileToken = await buckets.getToken(identity);
-    updateUser = true;
-  }
-  buckets.context.withToken(textileToken);
-
-  if (!textileThreadID) {
-    const client = new Client(buckets.context);
-    const res = await client.getThread("buckets");
-    textileThreadID = typeof res.id === "string" ? res.id : ThreadID.fromBytes(res.id).toString();
-    updateUser = true;
-  }
-  buckets.context.withThread(textileThreadID);
-
-  const roots = await buckets.list();
-  const existing = roots.find((bucket) => bucket.name === bucketName);
-
-  if (!existing) {
-    return { buckets: null, bucketKey: null, bucketRoot: null, bucketName };
-  }
-
-  if (!textileBucketCID) {
-    let ipfs = existing.path;
-    textileBucketCID = Strings.ipfsToCid(ipfs);
-    updateUser = true;
-  }
-  if (updateUser) {
-    Data.updateUserById({ id: user.id, textileToken, textileThreadID, textileBucketCID });
-  }
-
-  return {
-    buckets,
-    bucketKey: existing.key,
-    bucketRoot: existing,
-    bucketName,
-  };
 };
 
 export const getFileName = (s) => {
