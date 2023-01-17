@@ -1,6 +1,7 @@
 import * as Utilities from "~/node_common/utilities";
 import * as Data from "~/node_common/data";
 
+// NOTE(amine): deprecated api
 export default async (req, res) => {
   const id = Utilities.getIdFromCookie(req);
 
