@@ -24,13 +24,6 @@ export const error = {
     "We ran into issues while replicating your files for archiving",
   SERVER_ARCHIVE_DEAL_FAILED: "The storage deal wasn't successful",
 
-  //Bucket remove
-  SERVER_BUCKET_REMOVE_NO_CID:
-    "We ran into issues while removing a file. There was no file specified",
-  SERVER_BUCKET_REMOVE_BUCKET_NOT_FOUND: "We couldn't locate your files to delete",
-  SERVER_BUCKET_REMOVE_NO_BUCKET_ITEMS: "We couldn't locate your files to delete",
-  SERVER_BUCKET_REMOVE_NO_MATCHING_CID: "There were no matching files found",
-  SERVER_BUCKET_REMOVE_FAILED: "We were not able to delete that file",
 
   //Link create
   SERVER_CREATE_LINK_DUPLICATE: "You've already saved this link",
@@ -130,8 +123,6 @@ export const error = {
   SERVER_CREATE_USER_INVALID_USERNAME: "Please choose a valid username",
   SERVER_CREATE_USER_INVALID_PASSWORD: "Please choose a valid password",
   SERVER_CREATE_USER_INVALID_EMAIL: "Please choose a valid email",
-  SERVER_CREATE_USER_BUCKET_INIT_FAILURE:
-    "We're having trouble setting up your storage, please try again later",
   SERVER_CREATE_USER_FAILED:
     "We're having trouble creating your account right now. Please try again later",
 
@@ -210,7 +201,7 @@ export const error = {
   //Get deals
   SERVER_FILECOIN_NETWORK_DEALS_ERROR:
     "We're having trouble fetching your deal information right now",
-  SERVER_FILECOIN_NETWORK_ERROR: "We're having trouble fetching your storage information right now",
+  // SERVER_FILECOIN_NETWORK_ERROR: "We're having trouble fetching your storage information right now",
 
   //Sign in
   SIGN_UP_RATE_LIMITED: "Too many signup attempts. Please try again in 10 minutes",

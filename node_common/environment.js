@@ -25,15 +25,9 @@ export const LOCAL_PASSWORD_SECRET = `$2b$${LOCAL_PASSWORD_ROUNDS}$${process.env
 // NOTE(jim): Custom avatars
 export const AVATAR_SLATE_ID = process.env.AVATAR_SLATE_ID;
 
-// NOTE(jim): Textile secrets
-export const TEXTILE_HUB_KEY = process.env.TEXTILE_HUB_KEY;
-export const TEXTILE_HUB_SECRET = process.env.TEXTILE_HUB_SECRET;
-export const TEXTILE_HUB_STAGING_HOST = process.env.TEXTILE_HUB_STAGING_HOST;
-
 // NOTE(jim): Slack updates
 export const SOCIAL_SLACK_WEBHOOK_KEY = process.env.SOCIAL_SLACK_WEBHOOK_KEY;
 export const SUPPORT_SLACK_WEBHOOK_KEY = process.env.SUPPORT_SLACK_WEBHOOK_KEY;
-export const TEXTILE_SLACK_WEBHOOK_KEY = process.env.TEXTILE_SLACK_WEBHOOK_KEY;
 
 // NOTE(jim): External servers
 export const URI_SHOVEL = process.env.NEXT_PUBLIC_URI_SHOVEL;

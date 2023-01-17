@@ -290,7 +290,7 @@ export const theme = {
 };
 
 export const gateways = {
-  ipfs: "https://ipfs.io/ipfs",
+  ipfs: "https://gateway.estuary.tech/gw/ipfs",
 };
 
 export const hostname = "https://slate.host";
@@ -334,12 +334,6 @@ export const grids = {
 };
 
 export const profileDefaultPicture = `${gateways.ipfs}/bafkreick3nscgixwfpq736forz7kzxvvhuej6kszevpsgmcubyhsx2pf7i`;
-
-export const textile = {
-  threadName: "buckets",
-  mainBucket: "data",
-  dealsBucket: "stage-deal",
-};
 
 export const extensionLink = {
   chrome: "https://chrome.google.com/webstore/detail/slate/gloembacbehhbfbkcfjmloikeeaebnoc",

@@ -215,7 +215,7 @@ export const getById = async ({ id }) => {
     ...user,
     stats: {
       bytes,
-      maximumBytes: Constants.TEXTILE_ACCOUNT_BYTE_LIMIT,
+      maximumBytes: Constants.ACCOUNT_BYTE_LIMIT,
       imageBytes,
       videoBytes,
       audioBytes,
