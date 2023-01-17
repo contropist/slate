@@ -55,24 +55,11 @@ export default async (req, res) => {
   const salt = await BCrypt.genSalt(rounds);
   const hash = await Utilities.encryptPassword(req.body.data.password, salt);
 
-  const { textileKey, textileToken, textileThreadID, textileBucketCID } =
-    await Utilities.createBucket({});
-
-  if (!textileKey || !textileToken || !textileThreadID || !textileBucketCID) {
-    return res
-      .status(500)
-      .send({ decorator: "SERVER_CREATE_USER_BUCKET_INIT_FAILURE", error: true });
-  }
-
   const user = await Data.createUser({
     password: hash,
     salt,
     username: newUsername,
     email: newEmail,
-    textileKey,
-    textileToken,
-    textileThreadID,
-    textileBucketCID,
   });
 
   if (!user) {

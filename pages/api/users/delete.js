@@ -1,7 +1,4 @@
-import * as Environment from "~/node_common/environment";
 import * as Data from "~/node_common/data";
-import * as Utilities from "~/node_common/utilities";
-import * as Social from "~/node_common/social";
 import SearchManager from "~/node_common/managers/search";
 import * as RequestUtilities from "~/node_common/request-utilities";
 
@@ -23,25 +20,6 @@ export default async (req, res) => {
 
   // NOTE(martina): delete all of their public and private files.
   files = await Data.deleteFilesByUserId({ ownerId: id });
-
-  const defaultData = await Utilities.getBucket({ user });
-
-  // NOTE(jim): delete every bucket
-  try {
-    const roots = await defaultData.buckets.list();
-
-    for (let i = 0; i < roots.length; i++) {
-      await defaultData.buckets.remove(roots[i].key);
-    }
-  } catch (e) {
-    Social.sendTextileSlackMessage({
-      file: "/pages/api/users/delete.js",
-      user,
-      message: e.message,
-      code: e.code,
-      functionName: `b.remove`,
-    });
-  }
 
   SearchManager.deleteUser(user);
 

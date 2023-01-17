@@ -81,25 +81,12 @@ export default async (req, res) => {
     return res.status(201).send({ decorator: "SERVER_CREATE_USER_USERNAME_TAKEN" });
   }
 
-  const { textileKey, textileToken, textileThreadID, textileBucketCID } =
-    await Utilities.createBucket({});
-
-  if (!textileKey || !textileToken || !textileThreadID || !textileBucketCID) {
-    return res
-      .status(500)
-      .send({ decorator: "SERVER_CREATE_USER_BUCKET_INIT_FAILURE", error: true });
-  }
-
   const user = await Data.createUser({
     username: newUsername,
     email: newEmail,
     twitterId: twitterUser.id_str,
     twitterUsername: twitterUser.screen_name,
     twitterVerified: twitterUser.verified,
-    textileKey,
-    textileToken,
-    textileThreadID,
-    textileBucketCID,
   });
 
   if (!user) {

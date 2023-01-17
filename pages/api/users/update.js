@@ -2,10 +2,8 @@ import * as Environment from "~/node_common/environment";
 import * as Data from "~/node_common/data";
 import * as Utilities from "~/node_common/utilities";
 import * as Validations from "~/common/validations";
-import * as Social from "~/node_common/social";
 import * as ViewerManager from "~/node_common/managers/viewer";
 import SearchManager from "~/node_common/managers/search";
-import * as Logging from "~/common/logging";
 import * as RequestUtilities from "~/node_common/request-utilities";
 
 import BCrypt from "bcrypt";
@@ -91,41 +89,6 @@ export default async (req, res) => {
     }
 
     ViewerManager.hydratePartial(id, { viewer: true });
-  }
-
-  if (req.body.data.type === "SAVE_DEFAULT_ARCHIVE_CONFIG") {
-    let b;
-    try {
-      b = await Utilities.getBucket({ user });
-    } catch (e) {
-      Logging.error(e);
-      Social.sendTextileSlackMessage({
-        file: "/pages/api/users/update.js",
-        user,
-        message: e.message,
-        code: e.code,
-        functionName: `Utilities.getBucket`,
-      });
-
-      return res.status(500).send({ decorator: "SERVER_NO_BUCKET_DATA", error: true });
-    }
-
-    try {
-      await b.buckets.setDefaultArchiveConfig(b.bucketKey, req.body.data.config);
-    } catch (e) {
-      Logging.error(e);
-      Social.sendTextileSlackMessage({
-        file: "/pages/api/users/update.js",
-        user,
-        message: e.message,
-        code: e.code,
-        functionName: `b.buckets.setDefaultArchiveConfig`,
-      });
-
-      return res
-        .status(500)
-        .send({ decorator: "SERVER_USER_UPDATE_DEFAULT_ARCHIVE_CONFIG", error: true });
-    }
   }
 
   return res.status(200).send({ decorator: "SERVER_USER_UPDATE" });

@@ -1,15 +1,8 @@
 import * as Environment from "~/node_common/environment";
 import * as Data from "~/node_common/data";
-import * as Utilities from "~/node_common/utilities";
 import * as Strings from "~/common/strings";
 import * as Validations from "~/common/validations";
-import * as SlateManager from "~/node_common/managers/slate";
 import * as Constants from "~/node_common/constants";
-
-import JWT from "jsonwebtoken";
-
-import { PrivateKey } from "@textile/hub";
-import { Verification } from "~/components/core/Auth/components";
 
 export default async (req, res) => {
   if (!Strings.isEmpty(Environment.ALLOWED_HOST) && req.headers.host !== Environment.ALLOWED_HOST) {
@@ -49,8 +42,8 @@ export default async (req, res) => {
     return res.status(401).send({ decorator: "SERVER_MIGRATE_USER_INVALID_PIN", error: true });
   }
 
-  const username = verification.username;
-  const email = verification.email;
+  const username = verification?.username;
+  const email = verification?.email;
   const user = await Data.getUserByUsername({ username });
 
   if (!user) {
