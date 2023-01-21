@@ -4,12 +4,15 @@ import * as Window from "~/common/window";
 import * as Constants from "~/common/constants";
 import * as System from "~/components/system";
 import * as Events from "~/common/custom-events";
+import * as SVG from "~/common/svg";
 
 import { css } from "@emotion/react";
 import { SecondaryTabGroup } from "~/components/core/TabGroup";
+import { ConfirmationModal } from "~/components/core/ConfirmationModal";
 
 import ScenePage from "~/components/core/ScenePage";
 import ScenePageHeader from "~/components/core/ScenePageHeader";
+import SquareButtonGray from "~/components/core/SquareButtonGray";
 
 import APIDocsGetV1 from "~/components/api-docs/v1/get";
 import APIDocsGetSlateV1 from "~/components/api-docs/v1/get-slate.js";
@@ -38,6 +41,28 @@ import APIDocsUploadByUrlV3 from "~/components/api-docs/v3/upload-by-url.js";
 
 import WebsitePrototypeWrapper from "~/components/core/WebsitePrototypeWrapper";
 
+const STYLES_API_KEY = css`
+  height: 40px;
+  border-radius: 4px;
+  cursor: copy;
+  background-color: ${Constants.semantic.bgLight};
+  outline: none;
+  border: none;
+  width: 100%;
+  max-width: 380px;
+  font-family: ${Constants.font.code};
+  padding: 0 16px;
+  font-size: 14px;
+`;
+
+const STYLES_KEY_CONTAINER = css`
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 8px;
+`;
+
 const STYLES_EXAMPLE = css`
   margin-bottom: 48px;
 `;
@@ -47,6 +72,65 @@ const STYLES_SECTION_HEADER = css`
   margin-bottom: 24px;
 `;
 
+class Key extends React.Component {
+  _input;
+
+  state = { visible: false, copying: false, modalShow: false };
+
+  _handleDelete = async (res, id) => {
+    if (!res) {
+      this.setState({ modalShow: false });
+      return;
+    }
+    await this.props.onDelete(id);
+    this.setState({ modalShow: false });
+  };
+
+  _handleCopy = async () => {
+    this._input.select();
+    document.execCommand("copy");
+    await this.setState({ copying: true });
+    await Window.delay(1000);
+    await this.setState({ copying: false });
+  };
+
+  render() {
+    return (
+      <div css={STYLES_KEY_CONTAINER}>
+        <input
+          ref={(c) => {
+            this._input = c;
+          }}
+          value={this.state.copying ? "Copied!" : this.props.data.key}
+          readOnly
+          type={this.state.visible || this.state.copying ? "text" : "password"}
+          css={STYLES_API_KEY}
+          onClick={this._handleCopy}
+          onMouseEnter={() => this.setState({ visible: true })}
+          onMouseLeave={() => this.setState({ visible: false })}
+        />
+        <SquareButtonGray
+          onClick={() => this.setState({ modalShow: true })}
+          style={{
+            marginLeft: 8,
+          }}
+        >
+          <SVG.Trash height="16px" />
+        </SquareButtonGray>
+
+        {this.state.modalShow && (
+          <ConfirmationModal
+            type={"DELETE"}
+            withValidation={false}
+            callback={(e) => this._handleDelete(e, this.props.data.id)}
+            header={`Are you sure you want to revoke this API key?`}
+            subHeader={`Any services using it will no longer be able to access your Slate account.`}
+          />
+        )}
+      </div>
+    );
+  }
+}
 export default class SceneSettingsDeveloper extends React.Component {
   _bucketCID;
 
@@ -154,7 +238,33 @@ export default class SceneSettingsDeveloper extends React.Component {
           <span css={STYLES_LABEL}>guides</span>
         </div>
         */}
-          <ScenePageHeader title="Developer Documentation">
+
+          <ScenePageHeader title="API Keys">
+            You can use your API keys to access your account information outside of Slate and upload
+            files to Slate. You can have a maximum of 10 keys at any given time.
+          </ScenePageHeader>
+
+          <System.DescriptionGroup style={{ maxWidth: 640, marginBottom: 24 }} label="API Keys" />
+          {this.props.viewer.keys.map((k) => {
+            return <Key key={k.id} data={k} onDelete={this._handleDelete} />;
+          })}
+
+          <div style={{ marginTop: 24 }}>
+            {this.props.viewer.keys.length < 10 ? (
+              <System.ButtonPrimary onClick={this._handleSave} loading={this.state.loading}>
+                Generate
+              </System.ButtonPrimary>
+            ) : (
+              <System.ButtonDisabled>Generate</System.ButtonDisabled>
+            )}
+            {this.props.viewer.keys.length === 0 ? (
+              <ScenePageHeader title="">
+                Generate an API key to have it appear in the code examples
+              </ScenePageHeader>
+            ) : null}
+          </div>
+
+          <ScenePageHeader title="Developer Documentation" style={{ marginTop: 96 }}>
             Slate is currently on v3.0 of the API. While prior versions are still supported, we
             recommend using the most up to date version.
           </ScenePageHeader>

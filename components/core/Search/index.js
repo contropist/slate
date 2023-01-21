@@ -13,7 +13,7 @@ import { useIsomorphicLayoutEffect } from "~/common/hooks";
 import DataView from "~/components/core/DataView";
 import CollectionPreviewBlock from "~/components/core/CollectionPreviewBlock";
 import EmptyState from "~/components/core/EmptyState";
-import omit from "lodash.omit";
+import omit from "lodash/omit";
 
 /* -------------------------------------------------------------------------------------------------
  *  Input
